@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Nike Dunk Low Retro Premium</title>
+	<link rel="stylesheet" href="/css/estilos_productos_flexsole.css">
+	<link rel="stylesheet" href="/css/bootstrap.css.css">
+</head>
+
+<body>
+	<header>
+		<H1>FLEX SOLE'S</H1>
+	</header>
+	<nav th:replace="navbar"></nav>
+
+	<form th:action="@{/compra/cesta}" method="POST">
+
+		<section>
+			<article id="{id}" name="{titulo}" th:each="producto: ${ListaProductos}">
+				<aside>
+					<img th:src="@{/img/dunk_negras_1.jpg}" alt="dunk_negras_1">
+					<img th:src="@{/img/dunk_negras_2.jpg}" alt="dunk_negras_2">
+					<img th:src="@{/img/dunk_negras_3.jpg}" alt="dunk_negras_3">
+					<img th:src="@{/img/dunk_negras_4.jpg}" alt="dunk_negras_4">
+				</aside>
+
+				<div class="info">
+					<h2 th:text="${producto.titulo}"></h2>
+					<h3 th:text="${producto.precio}+'€'"></h3>
+					<h3 th:text="${producto.descuento}+'%'"></h3>
+					<p th:text="${producto.descripcion}"></p>
+
+					<input type="hidden" id="id" name="id" th:value="${producto.id}">
+					<input type="hidden" id="nombre" name="nombre" th:value="${producto.titulo}">
+					<input type="number" id="cantidad" name="cantidad" value="" min="1" max="100">
+					<input type="submit" value="Añadir a la cesta" />
+				</div>
+
+			</article>
+		</section>
+	</form>
+		<article id="{id}" name="{titulo}" th:each="producto: ${ListaProductos}">
+			<a th:href="@{/producto/borrar/{id}(id=${producto.id})}"><button>Borrar Producto</button></a>
+		</article>
+</body>
+</html>

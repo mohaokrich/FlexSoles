@@ -1,0 +1,54 @@
+.imagen{
+	display: flex;
+	justify-content: center;
+}
+.imagen img{
+	width: 70% ;
+	height: auto;
+}
+	nav{
+		width: 100%;
+	}
+	header{
+		text-align: center;
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		flex-flow: row wrap;
+	}
+		header h1{
+			font-size: 90px;
+		}
+		header img{
+			width: 200px;
+			height: 200px;
+		}
+    section{
+        display: flex;
+        flex-flow: row nowrap!important;
+    }
+        article{
+            border: 1px black solid;
+            margin: 1%;
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+            background-color: rgb(192, 192, 192)!important;
+            color: black;
+        }
+            article img{
+                align-self: center;
+            }
+#contenedor{
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	margin-top: 3%;
+}
+.cajas div{
+	width: 400px;
+}
+.card.mb-3{
+	margin: 2%;
+}

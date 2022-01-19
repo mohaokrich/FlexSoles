@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilos_flexsole.css">
+    <link rel="stylesheet" href="/css/bootstrap.css.css">
+
+    <title>FLEX SOLE'S</title>
+</head>
+<body>
+<nav th:replace="navbar"></nav>
+<h1>Carrito de la compra</h1>
+<form th:action="@{/compra/realizarCompra}" method="POST">
+	   <article id="${session.id}" name="${session.nombre}" th:each="compras: ${ListaCompras}">
+	    		   	 ID Producto <h2 th:text="${compras.idProducto}"></h2>
+		             Nombre<h3 th:text="${compras.nombreProducto}"></h3>
+		             Cantidad<h3 th:text="${compras.cantidad}"></h3>
+       </article>
+	<div th:if="${session.usuario == null}">
+		<a th:href="@{/usuario/login}" class="card-link">Inicia sesion para comprar</a>
+	</div>
+	<div th:if="${ListaCompras != null}">
+		<input type="submit" value="Comprar" />
+	</div>
+</form>
+</body>
+</html>	

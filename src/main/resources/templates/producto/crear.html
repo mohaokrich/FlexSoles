@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilos_productos_flexsole.css">
+    <link rel="stylesheet" href="/css/bootstrap.css.css">
+    <title>CREATE PRODUCT</title>
+</head>
+<body>
+    <header>
+        <h1>FLEX SOLE'S</h1>
+    </header>
+    <nav th:replace="navbar"></nav>
+
+    <div id="contenedor">
+    <form th:action="@{/producto/crear}" method="POST">
+        <div>
+            <p>Titulo: <input type="text" name="titulo"></p>
+            <br>
+            <p>Descripcion: <input type="text" name="descripcion"></p>
+            <br>
+            <p>Precio: <input type="text" name="precio"></p>
+            <br>
+            <p>Descuento: <input type="text" name="descuento"></p>
+        </div>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilos_productos_flexsole.css">
+    <link rel="stylesheet" href="/css/bootstrap.css.css">
+    <title>LOGIN</title>
+</head>
+<body>
+    <header>
+        <h1>FLEX SOLE'S</h1>
+    </header>
+    <nav th:replace="navbar"></nav>
+
+    <div id="contenedor">
+    <form th:action="@{/usuario/login}" method="POST">
+        <div>
+            <p>Nombre: <input type="text" name="nombre"></p>
+            <br>
+            <p>Contraseña: <input type="text" name="passwd"></p>
+        </div>
+        <input type="submit" value="entrar">
+    </form>
+</body>
+</html>

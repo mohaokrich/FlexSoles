@@ -1,0 +1,47 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/estilos_flexsole.css">
+	<link rel="stylesheet" href="/css/bootstrap.css.css">
+
+	<title>FLEX SOLE'S Mis compras</title>
+</head>
+
+<body>
+	<nav th:replace="navbar"></nav>
+	<h1>Mis compras</h1>
+	<div  id="${idUsuario}" th:each="usuario: ${ListaUsuarios}">
+		<input type="hidden" id="idUsuario" name="idUsuario" th:value="${session.usuario.id}">
+	</div>
+	<article id="${id}" name="${session.nombre}" th:each="compras: ${listaComprasRealizadas}">
+		<input type="hidden" id="id" name="id" th:value="${compras.idUsuario}">
+		<table>
+			<thead>
+				<tr>
+					<th> ID </th>
+					<th> ID USUARIO </th>
+					<th> ID PRODUCTO </th>
+					<th> CANTIDAD </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${listaComprasRealizadas.empty}">
+					<td colspan="2"> No hay compras realizadas </td>
+				</tr>
+				<tr>
+					<td><span th:text="${compras.idCompra}"> idUsuario </span></td>
+					<td><span th:text="${compras.idUsuario}"> idUsuario </span></td>
+					<td><span th:text="${compras.idProducto}"> idProducto </span></td>
+					<td><span th:text="${compras.cantidad}">unidades</span></td>
+					<td><a th:href="@{/compra/devolverCompra{id}(id=${compras.idCompra})}"><button>Devolver compra</button></a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</article>
+</body>
+
+</html>
