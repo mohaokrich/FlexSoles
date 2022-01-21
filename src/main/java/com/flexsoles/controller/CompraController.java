@@ -99,7 +99,7 @@ public class CompraController {
 			c.setCantidad(carrito.get(i).getCantidad());
 		}
 
-		comprasModelo.insertarCompra(c);
+		comprasModelo.insertarCompra(c, null);
 
 		if (c == null) {
 			return "redirect:/index";

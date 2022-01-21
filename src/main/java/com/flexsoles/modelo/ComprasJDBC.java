@@ -3,13 +3,13 @@ package com.flexsoles.modelo;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.flexsoles.persistencia.Compra;
+import com.flexsoles.persistencia.CompraProducto;
 import com.flexsoles.persistencia.Producto;
 import com.flexsoles.persistencia.Usuario;
 
@@ -23,21 +23,16 @@ public class ComprasJDBC implements ComprasDAO {
 	@Override
 	public List<Compra> getCompras(Long idUsuario) {
 
-		return jdbcTemplate.query("select * from Compras WHERE idUsuario = ?",
-				(rs, rowNum) -> new Compra(rs.getLong("id"), rs.getLong("idUsuario"),rs.getLong("idProducto"), rs.getInt("unidades")),idUsuario);
+		return jdbcTemplate.query("select * from Compras C INNER JOIN CompraProducto CP WHERE C.idUsuario = ?",
+				(rs, rowNum) -> new Compra(rs.getLong("id"), rs.getLong("idUsuario"),rs.getLong("idProducto"), rs.getUnidades()),idUsuario);
 
-		/*
-		return jdbcTemplate.queryForObject("select * from Compras where idUsuario = ?", new Object[] { idUsuario }, (rs,
-				rowNum) -> Optional.of(new Compras(rs.getLong("id"), rs.getLong("idUsuario"), rs.getLong("idProducto"), rs.getInt("unidades"))));
-*/
 	}
 	
 
-
 	@Override
-	public int insertarCompra(Compra c) {
+	public int insertarCompra(Compra c, CompraProducto cp) {
 		return jdbcTemplate.update("INSERT INTO Compras(idUsuario, idProducto, unidades) values(?,?,?)",
-				c.getIdUsuario(), c.getIdProducto(), c.getCantidad());
+				c.getIdUsuario(), c.getIdProducto(), cp.getUnidades());
 	}
 
 	@Override
