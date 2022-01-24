@@ -26,8 +26,9 @@ public class CustomUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
 		Usuario usuario = usuarioDao.getUsuarios(nombre);
 		
-		List<Rol> l = usuarioDao.findUserRoles(usuario.getId());
+		Set<Rol> l = usuario.getRoles();
 		HashSet<Rol> roles = new HashSet<>();
+
 		
 		l.stream().forEach(roles::add);
 		

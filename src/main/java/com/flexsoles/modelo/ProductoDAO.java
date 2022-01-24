@@ -1,20 +1,13 @@
 package com.flexsoles.modelo;
 import java.util.List;
 import java.util.Optional;
+
+import com.flexsoles.persistencia.Compra;
 import com.flexsoles.persistencia.Producto;
 
-public interface ProductoDAO {
-
-	int crearProducto(Producto p);
-	
-	long borrarId(long id);
-	
+public interface ProductoDAO extends DaoGenerico<Producto>{
 	List<Producto> get8Productos();
-	
-	Optional<Producto> buscarId(long id);
-	
 	List<Producto> buscarNombre(String titulo);
-	
 }
 
 

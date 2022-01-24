@@ -30,16 +30,16 @@ public class CompraServicioImpl implements ComprasServicio{
 	@Override
 	public Compra realizarCompra(Usuario u, List<LineaCarrito> listaCarrito) {
 		int resultado = 0;
-		Producto p = productoModelo.buscarId(listaCarrito.get(0).getIdProducto()).orElse(null);
+		
+		if (listaCarrito == null || listaCarrito.isEmpty()) return null; 
+		
 		Compra compra = new Compra();
-		compra.setIdUsuario(u.getId());
-		compra.setIdProducto(p.getId());
-		compra.setCantidad(listaCarrito.get(0).getCantidad());
-		
-		
-		if (p != null) {
-			resultado = comprasModelo.insertarCompra(compra);
+		for (LineaCarrito linea : listaCarrito) {
+			Producto p = productoModelo.buscar(linea.getIdProducto());
+			compra.anadirCompraProducto(p, linea.getCantidad());
 		}
+		
+	
 
 		//SI ES 0 O NULO HA FALLADO
 		if(resultado == 0){
@@ -50,11 +50,17 @@ public class CompraServicioImpl implements ComprasServicio{
 
 	}
 
-
 	@Override
 	public List<Compra> getCompras(Long idUsuario) {
+		return null;
+	}
+
+	@Override
+	public CompraProducto getUnidades(Compra c) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

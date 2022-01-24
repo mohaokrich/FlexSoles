@@ -24,15 +24,14 @@ public class ProductoController {
 	// GET METHODS
 	@RequestMapping(value = "/producto/producto{id}", method = RequestMethod.GET)
 	public String getIdProducto(Model modelo, @PathVariable("id") long id) {
-		Optional<Producto> ListaProductos = productoModelo.buscarId(id);
-		Producto p1 = ListaProductos.get();
-		modelo.addAttribute("ListaProductos", p1);
+		List<Producto> ListaProductos = (List<Producto>) productoModelo.buscar(id);
+		modelo.addAttribute("ListaProductos", ListaProductos);
 		return "/producto/producto";
 	}
 
 	@RequestMapping(value = "/producto/borrar/{id}", method = RequestMethod.GET)
 	public String getBorrarIdProducto(@PathVariable("id") long id) {
-		productoModelo.borrarId(id);
+		productoModelo.borrar(id);
 		return "redirect:/index";
 	}
 
@@ -49,8 +48,6 @@ public class ProductoController {
 	}
 	
 	
-	
-	
 	// POST METHODS
 		@RequestMapping(value = "/producto/crear", method = RequestMethod.POST)
 		public String CrearProducto(@RequestParam String titulo, String descripcion, double precio, int descuento,
@@ -61,7 +58,7 @@ public class ProductoController {
 			producto.setDescripcion(descripcion);
 			producto.setPrecio(precio);
 			producto.setDescuento(descuento);
-			productoModelo.crearProducto(producto);
+			productoModelo.crear(producto);
 			return "redirect:/index";
 		}
 

@@ -1,7 +1,7 @@
 package com.flexsoles.controller;
 
 import java.util.HashSet;
-import java.util.Optional;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -50,9 +50,8 @@ public class UsuarioController {
 
 	@RequestMapping(value = "/usuario/user{id}", method = RequestMethod.GET)
 	public String getPerfil(Model modelo, @PathVariable("id") long id) {
-		Optional<Usuario> ListaUsuarios = usuarioModelo.buscarId(id);
-		Usuario u = ListaUsuarios.get();
-		modelo.addAttribute("ListaUsuarios", u);
+		List<Usuario> ListaUsuarios = (List<Usuario>) usuarioModelo.buscar(id);
+		modelo.addAttribute("ListaUsuarios", ListaUsuarios);
 		return "/usuario/user";
 	}
 	
@@ -72,21 +71,14 @@ public class UsuarioController {
 		usuario.setEmail(email);
 		usuario.setPasswd(bCryptPasswordEncoder.encode(passwd));
 		usuario.setFechaNacimiento(fechaNacimiento);
-		usuarioModelo.crearUsuario(usuario);
+		usuarioModelo.crear(usuario);
 		
-		long temp = usuarioModelo.getId(usuario.getNombre());
-		usuarioModelo.saveTablaRoles(temp, "USER");
-		usuarioModelo.saveRol(temp, temp);
+		//HAY QUE IMPLEMENTAR ESTO!
+//		long temp = usuarioModelo.getId(usuario.getNombre());
+//		usuarioModelo.saveTablaRoles(temp, "USER");
+//		usuarioModelo.saveRol(temp, temp);
 		
 		return "redirect:/usuario/login";
-	}
-
-	@RequestMapping(value = "/usuario/login", method = RequestMethod.POST)
-	public String iniciarSesion(Model modelo, @RequestParam String nombre, @RequestParam String passwd,
-			HttpSession session) {
-		Usuario usuario = usuarioModelo.iniciarSesion(nombre, passwd);
-		session.setAttribute("usuario", usuario);
-		return "redirect:/index";
 	}
 
 }

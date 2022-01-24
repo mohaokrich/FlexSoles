@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -19,7 +20,7 @@ public class CompraProducto {
 	private CompraProductoId id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("idCompra")
+	@JoinColumn(name="idCompra")
 	private Compra compra;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -63,6 +64,8 @@ public class CompraProducto {
 	}
 
 	public void setProducto(Producto producto) {
+		
+		producto.anadirCompraProducto(this);
 		this.producto = producto;
 	}
 
@@ -74,6 +77,9 @@ public class CompraProducto {
 		this.unidades = unidades;
 	}
 
+	
+	
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)

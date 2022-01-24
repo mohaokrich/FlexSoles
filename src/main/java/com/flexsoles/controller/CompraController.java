@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.flexsoles.dtos.LineaCarrito;
 import com.flexsoles.modelo.ComprasDAO;
 import com.flexsoles.persistencia.Compra;
+import com.flexsoles.persistencia.CompraProducto;
 import com.flexsoles.persistencia.Usuario;
 import com.flexsoles.servicios.ComprasServicio;
 
@@ -36,13 +37,13 @@ public class CompraController {
 	}
 	@RequestMapping(value = "/compra/miscompras{id}", method = RequestMethod.GET)
 	public String getComprasRealizadas(Model modelo, @PathVariable("id") long id) {
-		List<Compra> listaComprasRealizadas = comprasModelo.getCompras(id);
+		List<Compra> listaComprasRealizadas = (List<Compra>) comprasModelo.buscar(id);
 		modelo.addAttribute("listaComprasRealizadas", (listaComprasRealizadas));
 		return "/compra/miscompras";
 	}
 	@RequestMapping(value = "/compra/devolverCompra{id}", method = RequestMethod.GET)
 	public String devolverCompra(@PathVariable("id") long id, Model modelo){
-		comprasModelo.devolverCompra(id);
+		comprasModelo.borrar(id);
 		return "redirect:/index";
 	}
 
@@ -91,15 +92,17 @@ public class CompraController {
 	public String FinalizarCompra(HttpSession session, Model modelo) {
 		Usuario user = (Usuario) session.getAttribute("usuario");
 		List<LineaCarrito> carrito = (List<LineaCarrito>) session.getAttribute("carrito");
+		
 		Compra c = comprasServicio.realizarCompra(user, carrito);
+		CompraProducto cp = comprasServicio.getUnidades(c);
 
 		for (int i = 0; i < carrito.size(); i++) {
 			c.setIdUsuario(user.getId());
 			c.setIdProducto(carrito.get(i).getIdProducto());
-			c.setCantidad(carrito.get(i).getCantidad());
+			cp.setUnidades(carrito.get(i).getCantidad());
 		}
 
-		comprasModelo.insertarCompra(c, null);
+		comprasModelo.crear(c);
 
 		if (c == null) {
 			return "redirect:/index";

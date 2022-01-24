@@ -1,9 +1,10 @@
 package com.flexsoles.persistencia;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,7 +22,6 @@ import org.hibernate.annotations.NaturalIdCache;
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@OneToMany(mappedBy = "Productos", cascade = CascadeType.ALL, orphanRemoval = true)
 	// ATRIBUTOS
 	@Id
 	@GeneratedValue
@@ -35,7 +35,8 @@ public class Producto implements Serializable {
 
 	private int descuento;
 
-	private List<CompraProducto> productos = new ArrayList<>();
+	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<CompraProducto> comprasProductos = new HashSet <CompraProducto>();
 
 	// CONSTRUCTORES
 
@@ -107,6 +108,20 @@ public class Producto implements Serializable {
 		return precio;
 	}
 
+	public Set<CompraProducto> getComprasProductos() {
+		return comprasProductos;
+	}
+
+	public void setComprasProductos(Set<CompraProducto> comprasProductos) {
+		this.comprasProductos = comprasProductos;
+	}
+
+	public void anadirCompraProducto (CompraProducto cp) {
+		
+		this.comprasProductos.add(cp);
+	}
+	
+	
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
