@@ -17,7 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UsuariosSecurity")
+@Table(name = "usuario_security")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,10 +42,10 @@ public class Usuario implements Serializable {
 
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "UsuarioRol", 
+	@JoinTable(name = "usuario_rol", 
 	joinColumns = @JoinColumn(name = "idUsuario"), 
 	inverseJoinColumns = @JoinColumn(name = "id"))
-	
+
 	private Set<Rol> roles = new HashSet<>();
 
 	// CONSTRUCTORES

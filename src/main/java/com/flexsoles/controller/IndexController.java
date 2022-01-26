@@ -16,8 +16,6 @@ public class IndexController {
 	@Autowired
 	private ProductoDAO productoModelo;
 	
-	
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getIndex2(Model modelo) {
 		List<Producto> ListaProductos = productoModelo.get8Productos();

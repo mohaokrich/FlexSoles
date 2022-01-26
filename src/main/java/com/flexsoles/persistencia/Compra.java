@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NaturalIdCache;
 
 @Entity(name = "Compra")
-@Table(name = "Compras")
+@Table(name = "compra")
 @NaturalIdCache
 public class Compra implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -25,11 +25,11 @@ public class Compra implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idCompra")
+	@Column(name = "idcompra")
 	private long idCompra;
-	@Column(name = "idProducto")
+	@Column(name = "idproducto")
 	private long idProducto;
-	@Column(name = "idUsuario")
+	@Column(name = "idusuario")
 	private long idUsuario;
 
 	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -88,13 +88,8 @@ public class Compra implements Serializable {
 		cp.setCompra(this);
 		cp.setProducto(p);
 		cp.setUnidades(unidades);
-		
-		
+	
 		this.getCompras().add(cp);
-		
-		
 	}
-	
-	
 
 }

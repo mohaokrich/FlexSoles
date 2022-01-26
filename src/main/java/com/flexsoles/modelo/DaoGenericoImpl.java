@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.context.annotation.Primary;
+
 public abstract class DaoGenericoImpl<T> implements DaoGenerico<T> {
 
 	@PersistenceContext

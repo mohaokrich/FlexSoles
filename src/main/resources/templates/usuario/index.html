@@ -1,0 +1,37 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css.css">
+    <link rel="stylesheet" href="/css/estilos_flexsole.css">
+    <link rel="stylesheet" href="/css/bootstrap.css.css">
+    <title>FLEX SOLE'S</title>
+</head>
+<body>
+    <header>
+        <h1>FLEX SOLE'S</h1>
+    </header>
+	<nav th:replace="navbar"></nav>
+    <div id="contenedor">
+		<div class="card mb-3" id="{id}" th:each="producto: ${ListaProductos}">
+			<div class="cajas">
+			  <h3 class="card-header" th:text="${producto.titulo}"></h3>
+			  <div class="card-body"></div>
+			  <div class="imagen">
+			  		<img th:src="@{/img/nike_dunk_first_article.jpg}" alt="imagen1">
+			  </div>
+			  <div class="card-body">
+			    <h2 class="card-text" th:text="${producto.precio}+'€'"></h2>
+			    <h2 class="card-text" th:text="${producto.descuento}+'%'"></h2>
+			  </div>
+			  <div class="card-body">
+			    <a th:href="@{/producto/{id}(id=${'producto'+producto.id})}" class="card-link">Visitar</a>
+			  </div>
+			</div>
+		</div>
+    </div>
+</body>
+</html>

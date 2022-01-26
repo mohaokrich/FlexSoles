@@ -2,6 +2,7 @@ package com.flexsoles.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,17 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.flexsoles.modelo.UsuarioDAO;
 import com.flexsoles.persistencia.Rol;
 import com.flexsoles.persistencia.Usuario;
+import com.flexsoles.servicios.UsuarioServicio;
 
 @Controller
 public class UsuarioController {
-	
 	@Autowired
-	private UsuarioDAO usuarioModelo;
+	UsuarioServicio usuarioServicio;
+
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	
-	
 	
 	//GET METHODS
 	@RequestMapping(value = "/usuario/login", method = RequestMethod.GET)
@@ -50,28 +49,25 @@ public class UsuarioController {
 
 	@RequestMapping(value = "/usuario/user{id}", method = RequestMethod.GET)
 	public String getPerfil(Model modelo, @PathVariable("id") long id) {
-		List<Usuario> ListaUsuarios = (List<Usuario>) usuarioModelo.buscar(id);
-		modelo.addAttribute("ListaUsuarios", ListaUsuarios);
+		//List<Usuario> ListaUsuarios = (List<Usuario>) usuarioServicio.buscar(id);
+		//modelo.addAttribute("ListaUsuarios", ListaUsuarios);
 		return "/usuario/user";
 	}
 	
-	
-	
-	
 	//POST METHODS
 	@RequestMapping(value = "/usuario/signup", method = RequestMethod.POST)
-	public String CrearUsuario(@RequestParam String nombre, String apellidos, HashSet<Rol> roles, String email, String passwd,
+	public String CrearUsuario(@RequestParam String nombre, String apellidos, String email, String passwd,
 			String fechaNacimiento, HttpServletRequest request, Model modelo) {
 		Usuario usuario = new Usuario();
 
-
 		usuario.setNombre(nombre);
 		usuario.setApellidos(apellidos);
-		usuario.setRoles(roles);
+
 		usuario.setEmail(email);
 		usuario.setPasswd(bCryptPasswordEncoder.encode(passwd));
 		usuario.setFechaNacimiento(fechaNacimiento);
-		usuarioModelo.crear(usuario);
+		
+		usuarioServicio.crearUsuario(usuario);
 		
 		//HAY QUE IMPLEMENTAR ESTO!
 //		long temp = usuarioModelo.getId(usuario.getNombre());

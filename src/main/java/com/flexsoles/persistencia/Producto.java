@@ -17,7 +17,7 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
 @Entity(name = "Producto")
-@Table(name = "Productos")
+@Table(name = "Producto")
 @NaturalIdCache
 public class Producto implements Serializable {
 

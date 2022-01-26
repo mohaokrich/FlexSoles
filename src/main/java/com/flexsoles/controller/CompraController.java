@@ -27,7 +27,6 @@ public class CompraController {
 	@Autowired
 	private ComprasServicio comprasServicio;
 	
-	
 	// GET METHODS
 	@RequestMapping(value = "/compra/cesta", method = RequestMethod.GET)
 	public String getCesta(Model modelo, HttpSession session) {

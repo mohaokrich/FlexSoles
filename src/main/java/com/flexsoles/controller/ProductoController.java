@@ -20,12 +20,11 @@ public class ProductoController {
 	@Autowired
 	private ProductoDAO productoModelo;
 	
-	
 	// GET METHODS
 	@RequestMapping(value = "/producto/producto{id}", method = RequestMethod.GET)
 	public String getIdProducto(Model modelo, @PathVariable("id") long id) {
-		List<Producto> ListaProductos = (List<Producto>) productoModelo.buscar(id);
-		modelo.addAttribute("ListaProductos", ListaProductos);
+		Producto producto = (Producto) productoModelo.buscar(id);
+		modelo.addAttribute("producto", producto);
 		return "/producto/producto";
 	}
 

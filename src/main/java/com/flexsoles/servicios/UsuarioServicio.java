@@ -6,6 +6,6 @@ import com.flexsoles.persistencia.Usuario;
 
 public interface UsuarioServicio extends UserDetailsService{
 	public Usuario buscarPorNombreUsuario(String username);
-	public int crearUsuario (Usuario u);
+	public Usuario crearUsuario(Usuario u);
 	
 }

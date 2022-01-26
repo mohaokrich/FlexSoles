@@ -12,7 +12,7 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity(name = "CompraProducto")
-@Table(name = "CompraProducto")
+@Table(name = "compra_producto")
 public class CompraProducto {
 	// ATRIBUTOS
 	
@@ -20,15 +20,17 @@ public class CompraProducto {
 	private CompraProductoId id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="idCompra")
+	@JoinColumn(name="idcompra" ,referencedColumnName = "idCompra", insertable = false, updatable = false)
+	
 	private Compra compra;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("idProducto")
+	@MapsId("id")
 	private Producto producto;
 
 	@Column(name = "unidades")
 	private int unidades;
+	
 
 	// CONSTRUCTORES
 	public CompraProducto() {

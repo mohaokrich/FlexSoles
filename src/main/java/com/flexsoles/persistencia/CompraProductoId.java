@@ -10,9 +10,9 @@ public class CompraProductoId implements Serializable {
 	//ATRIBUTOS
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "idCompra")
+	@Column(name = "idcompra")
 	private long idCompras;
-	@Column(name = "idProducto")
+	@Column(name = "idproducto")
 	private long idProducto;
 	
 	//CONSTRUCTORES
