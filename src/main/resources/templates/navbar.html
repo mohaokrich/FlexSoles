@@ -1,36 +1,5 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="display: flex; flex-flow: column wrap">
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form th:action="@{/usuario/login}" method="POST">
-          <div>
-              <div class="col-primary">Nombre: <input type="text" name="nombre"></div>
-              <br>
-              <div class="col-primary">Contraseña: <input type="text" name="passwd"></div>
-          </div>
-          <button class="btn btn-info" type="submit" value="entrar">
-      </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="container-fluid">
     <div th:if="${session.usuario != null}" th:href="@{/usuario/user{id}(id=${session.usuario.id})}">
     <a class="navbar-brand">
@@ -53,18 +22,24 @@
   <div style="display: flex; margin-left:280px"class="navbar-brand" id="navbarColor01" >
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <a class="nav-link active" th:href="@{/index}">Home</a>
+          <button type="button" class="btn btn-primary" onclick="window.location.href='/index'">
+ 		  Home</button>
           <span class="visually-hidden">(current)</span>
         </a>
       </li>
       <li class="nav-item" th:if="${session.usuario != null}">
-        <a class="nav-link" th:if="${session.usuario.rol}=='ADMIN'"  th:href="@{/producto/crear}">Insertar</a>
+        <!-- <a class="nav-link" th:if="${session.usuario.rol}=='ADMIN'"  th:href="@{/producto/crear}">Insertar</a> -->
+          <button type="button" th:if="${session.usuario != null}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ 		  Insertar</button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/usuario/signup}">SIGNUP</a>
+        <!--<a class="nav-link" th:href="@{/usuario/signup}">SIGNUP</a>  -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ 		  Registro</button>
       </li>
       <li class="nav-item" th:if="${session.usuario == null}">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">LOGIN</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ 		  Login</button>
       </li>
       <li class="nav-item" th:if="${session.usuario != null}">
         <a class="nav-link" th:href="@{/usuario/logout}">LOG OUT</a>
