@@ -29,9 +29,9 @@ public class Rol implements Serializable {
 	private String nombre_rol;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "UsuarioRol", 
+	@JoinTable(name = "usuario_rol", 
 	joinColumns = @JoinColumn(name = "id"), 
-	inverseJoinColumns = @JoinColumn(name = "idUsuario"))
+	inverseJoinColumns = @JoinColumn(name = "id_usuario"))
 
 	private Set<Usuario> usuarios = new HashSet<>();
 

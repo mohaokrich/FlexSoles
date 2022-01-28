@@ -14,10 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario_security")
+@Table(name = "usuario_security", schema = "usuario_security")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -43,7 +44,7 @@ public class Usuario implements Serializable {
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "usuario_rol", 
-	joinColumns = @JoinColumn(name = "idUsuario"), 
+	joinColumns = @JoinColumn(name = "id_usuario"), 
 	inverseJoinColumns = @JoinColumn(name = "id"))
 
 	private Set<Rol> roles = new HashSet<>();

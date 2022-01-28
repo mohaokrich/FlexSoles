@@ -1,5 +1,7 @@
 package com.flexsoles.servicios;
 
+import java.util.Map;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,36 @@ public class UsuarioServicioImpl implements UsuarioServicio,UserDetailsService {
 		Rol rol = roldao.buscar(1L);
 		u.anadirRol(rol);
 		return usuariodao.crear(u);
+	}
+
+	@Override
+	public long contarTodos(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Usuario crear(Usuario t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void borrar(Object id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Usuario buscar(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Usuario actualizar(Usuario t) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
