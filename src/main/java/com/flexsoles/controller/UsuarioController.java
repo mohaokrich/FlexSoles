@@ -76,12 +76,12 @@ public class UsuarioController {
 
 		return "redirect:/usuario/login";
 	}
-
+/*
 	@RequestMapping(value = "/usuario/login", method = RequestMethod.POST)
 	public String iniciarSesion(Model modelo, @RequestParam String nombre, @RequestParam String passwd,
 			HttpSession session) {
 		Usuario usuario = usuarioModelo.iniciarSesion(nombre, passwd);
 		session.setAttribute("usuario", usuario);
 		return "redirect:/index";
-	}
+	}*/
 }

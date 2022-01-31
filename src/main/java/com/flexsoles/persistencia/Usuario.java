@@ -38,14 +38,12 @@ public class Usuario implements Serializable {
 	private String email;
 	@Column(name = "passwd")
 	private String passwd;
-	@Column(name = "fechaNacimiento")
+	@Column(name = "fecha_nacimiento")
 	private String fechaNacimiento;
 
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "usuario_rol", 
-	joinColumns = @JoinColumn(name = "id_usuario"), 
-	inverseJoinColumns = @JoinColumn(name = "id"))
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE },mappedBy="usuarios")
+
 
 	private Set<Rol> roles = new HashSet<>();
 
