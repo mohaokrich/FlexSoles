@@ -10,7 +10,7 @@ INSERT INTO producto(titulo,descripcion,precio,descuento) VALUES("Reebok Classic
 INSERT INTO roles(nombre_rol) VALUES("USER");
 INSERT INTO roles(nombre_rol) VALUES("ADMIN");
 
-INSERT INTO usuario_security(nombre, apellidos, rol, email, passwd, fecha_nacimiento) values("chu","david","USER","davidchiskano98@gmail.com","david","1998-01-04"); 
+INSERT INTO usuario_security(nombre, apellidos, rol, email, passwd, fecha_nacimiento) values("chu","david","USER","davidchiskano98@gmail.com","$2a$10$AWwD.180VYMIDyClq9zNjO5C3pdMx5WX93g5GXsFbjh7Fn0cyxPki","1998-01-04"); 
 INSERT INTO usuario_security(nombre, apellidos, rol, email, passwd, fecha_nacimiento) values("jamon","jamon","ADMIN","davidchiskano98@gmail.com","david","1998-01-04"); 
 INSERT INTO compra(idUsuario, idproducto, unidades) values(1,5,1); 
 INSERT INTO compra(idUsuario, idproducto, unidades) values(2,5,1); 
