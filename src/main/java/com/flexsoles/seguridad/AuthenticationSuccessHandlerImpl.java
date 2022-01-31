@@ -17,14 +17,15 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.flexsoles.modelo.UsuarioDAO;
 import com.flexsoles.persistencia.Rol;
 import com.flexsoles.persistencia.Usuario;
 import com.flexsoles.servicios.UsuarioServicio;
 
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler{
 	@Autowired
-	private UsuarioServicio UsuarioServicio;
-
+	private UsuarioDAO UsuarioServicio;
+	
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -33,13 +34,14 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		HttpSession session = request.getSession();
-		Usuario authUser = UsuarioServicio.buscarPorNombreUsuario(userDetails.getUsername());
+		Usuario authUser = UsuarioServicio.getUsuarios(userDetails.getUsername());
 		session.setAttribute("usuario", authUser);
 		session.setAttribute("usuario.nombre", authUser.getNombre());
 		session.setAttribute("usuario.id", authUser.getId());
 
 		boolean isUsuario = false;
 		boolean isAdmin = false;
+		
 		final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		for (final GrantedAuthority grantedAuthority : authorities) {
 			if (grantedAuthority.getAuthority().equals("USER")) {
