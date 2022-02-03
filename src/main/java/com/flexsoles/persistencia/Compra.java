@@ -1,6 +1,7 @@
 package com.flexsoles.persistencia;
 
 import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalIdCache;
-
 @Entity(name = "Compra")
 @Table(name = "compra")
 @NaturalIdCache
@@ -25,11 +25,11 @@ public class Compra implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idcompra")
-	private long idCompra;
-	@Column(name = "idproducto")
+	@Column(name = "id")
+	private long id_compra;
+	@Column(name = "id_producto")
 	private long idProducto;
-	@Column(name = "idusuario")
+	@Column(name = "id_usuario")
 	private long idUsuario;
 
 	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,7 +43,7 @@ public class Compra implements Serializable {
 	}
 	public Compra(long idCompra, long idUsuario, long idProducto) {
 		super();
-		this.idCompra = idCompra;
+		this.id_compra = idCompra;
 		this.idProducto = idProducto;
 		this.idUsuario = idUsuario;
 
@@ -52,11 +52,11 @@ public class Compra implements Serializable {
 	
 	//GETTERS && SETTERS
 	public long getIdCompra() {
-		return idCompra;
+		return id_compra;
 	}
 
 	public void setIdCompra(long idCompra) {
-		this.idCompra = idCompra;
+		this.id_compra = idCompra;
 	}
 
 	public long getIdProducto() {

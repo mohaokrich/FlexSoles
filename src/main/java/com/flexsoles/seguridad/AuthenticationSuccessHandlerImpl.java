@@ -2,7 +2,6 @@ package com.flexsoles.seguridad;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +17,7 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.flexsoles.modelo.UsuarioDAO;
-import com.flexsoles.persistencia.Rol;
 import com.flexsoles.persistencia.Usuario;
-import com.flexsoles.servicios.UsuarioServicio;
 
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler{
 	@Autowired
@@ -48,25 +45,25 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 				isUsuario = true;
 				session.setAttribute("usuario.rol", grantedAuthority.getAuthority().equals("USER"));
 				break;
-			} else if (grantedAuthority.getAuthority().equals("ADMIN")) {
+			}else if (grantedAuthority.getAuthority().equals("ADMIN")) {
 				isAdmin = true;
 				session.setAttribute("usuario.rol", grantedAuthority.getAuthority().equals("ADMIN"));
 				break;
 			}
 		}
 
+		
 		String targetUrl;
 		if (isUsuario) {
 			targetUrl = "/index";
 		} else if (isAdmin) {
-			targetUrl = "/producto/crear";
+			targetUrl = "/index";
 		} else {
 			throw new IllegalStateException();
 		}
-
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
-
+	
 	public void setRedirectStrategy(final RedirectStrategy redirectStrategy) {
 		this.redirectStrategy = redirectStrategy;
 	}
@@ -74,7 +71,4 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	protected RedirectStrategy getRedirectStrategy() {
 		return redirectStrategy;
 	}
-
-
-
 }

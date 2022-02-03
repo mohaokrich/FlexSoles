@@ -1,33 +1,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="es"></html>
 <head>
-	<link th:href="@{/css/bootstrap_formulario.css.css}" rel="stylesheet" />
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/css/bootstrap.css.css">
-	<link rel="stylesheet" href="/css/estilos_flexsole.css">
+	<nav th:replace="head_elements"></nav>
+	<title>USUARIO</title>
 </head>
-
 <body>
-	<header>
-		<h1>FLEX SOLE'S</h1>
-	</header>
+<div class="container-fluid">
+	<!-- HEADER APERTURA-->
+	<div th:replace="header"></div>
+	<!-- HEADER APERTURA-->
+	<!-- NAVAR APERTURA-->
 	<nav th:replace="navbar"></nav>
+	<!-- NAVAR CIERRE-->
+
 	<div id="contenedor">
-		<article id="{id}" th:each="usuario: ${ListaUsuarios}">
+		<article id="{id}" th:each="usuario: ${usuario}">
 			<h3>Nombre:</h3>
-			<p th:text=${usuario.nombre}></p>
+				<p th:text=${usuario.nombre}></p>
 			<h3>Apellidos:</h3>
-			<p th:text=${usuario.apellidos}></p>
+				<p th:text=${usuario.apellidos}></p>
 			<h3>Email:</h3>
-			<p th:text=${usuario.email}></p>
+				<p th:text=${usuario.email}></p>
 			<h3>Dia de Nacimiento:</h3>
-			<p th:text=${usuario.fechaNacimiento}></p>
+				<p th:text=${usuario.fechaNacimiento}></p>
 			<div class="card-body">
 				<a th:href="@{/compra/miscompras{id}(id=${''+usuario.id})}" class="card-link">Ver compras</a>
 			</div>
 		</article>
+	</div>
+</div>
 </body>
-
 </html>

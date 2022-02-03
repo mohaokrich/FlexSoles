@@ -16,18 +16,18 @@ public class IndexController {
 	@Autowired
 	private ProductoDAO productoModelo;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = { "/","index"}, method = RequestMethod.GET)
 	public String getIndex2(Model modelo) {
 		List<Producto> ListaProductos = productoModelo.get8Productos();
 		modelo.addAttribute("ListaProductos", ListaProductos);
 		return "index";
 	}
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String getIndex(Model modelo) {
-		List<Producto> ListaProductos = productoModelo.get8Productos();
-		modelo.addAttribute("ListaProductos", ListaProductos);
-		return "index";
-	}
+//	@RequestMapping(value = "/index", method = RequestMethod.GET)
+//	public String getIndex(Model modelo) {
+//		List<Producto> ListaProductos = productoModelo.get8Productos();
+//		modelo.addAttribute("ListaProductos", ListaProductos);
+//		return "index";
+//	}
 
 }

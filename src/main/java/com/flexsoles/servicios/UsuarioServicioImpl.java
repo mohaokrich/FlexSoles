@@ -43,6 +43,7 @@ public class UsuarioServicioImpl implements UsuarioServicio,UserDetailsService {
 	@Override
 	public Usuario crearUsuario(Usuario u) {
 		Rol rol = roldao.buscar(1L);
+		//rol.setNombre_rol("ADMIN"); --> CREAR ADMIN	
 		u.anadirRol(rol);
 		return usuariodao.crear(u);
 	}
@@ -67,8 +68,7 @@ public class UsuarioServicioImpl implements UsuarioServicio,UserDetailsService {
 
 	@Override
 	public Usuario buscar(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return usuariodao.buscar(id);
 	}
 
 	@Override

@@ -19,13 +19,15 @@ public class CompraProducto {
 	@EmbeddedId
 	private CompraProductoId id;
 	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="idcompra",referencedColumnName = "idcompra", insertable = false, updatable = false)
+//	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="idcompra" ,referencedColumnName = "idCompra", insertable = false, updatable = false)
-	
+	@MapsId("id_compra")
 	private Compra compra;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("id")
+	@MapsId("id_producto")
 	private Producto producto;
 
 	@Column(name = "unidades")

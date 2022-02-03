@@ -2,23 +2,23 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<div th:replace="head_elements"></div>
 	<title>Nike Dunk Low Retro Premium</title>
-	<link rel="stylesheet" href="/css/estilos_productos_flexsole.css">
-	<link rel="stylesheet" href="/css/bootstrap.css.css">
 </head>
 
-<body>
-	<header>
-		<H1>FLEX SOLE'S</H1>
-	</header>
-	<nav th:replace="navbar"></nav>
+<body class="producto">
+	<div class="container-fluid" style="display:flex; justify-content:center; flex-direction:column">
+		<!-- HEADER APERTURA-->
+		<div th:replace="header"></div>
+		<!-- HEADER APERTURA-->
 
-	<form th:action="@{/compra/cesta}" method="POST">
+		<!-- NAVAR APERTURA-->
+		<nav th:replace="navbar"></nav>
+		<!-- NAVAR CIERRE-->
 
-		<section>
+		<form th:action="@{/compra/cesta}" method="POST">
+
+			<section>
 				<aside>
 					<img th:src="@{/img/dunk_negras_1.jpg}" alt="dunk_negras_1">
 					<img th:src="@{/img/dunk_negras_2.jpg}" alt="dunk_negras_2">
@@ -26,7 +26,7 @@
 					<img th:src="@{/img/dunk_negras_4.jpg}" alt="dunk_negras_4">
 				</aside>
 
-				<div class="info">
+				<span>
 					<h2 th:text="${producto.titulo}"></h2>
 					<h3 th:text="${producto.precio}+'€'"></h3>
 					<h3 th:text="${producto.descuento}+'%'"></h3>
@@ -36,12 +36,13 @@
 					<input type="hidden" id="nombre" name="nombre" th:value="${producto.titulo}">
 					<input type="number" id="cantidad" name="cantidad" value="" min="1" max="100">
 					<input type="submit" value="Añadir a la cesta" />
-				</div>
-		</section>
-	</form>
+				</span>
+			</section>
+		</form>
 		<article id="{id}" name="{titulo}" th:each="producto: ${ListaProductos}">
 			<a th:href="@{/producto/borrar/{id}(id=${producto.id})}"><button>Borrar Producto</button></a>
 		</article>
+	</div>
 </body>
 
 </html>
