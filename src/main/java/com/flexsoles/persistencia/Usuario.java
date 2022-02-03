@@ -14,10 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario_security")
+@Table(name = "usuario_security", schema = "usuario_security")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,14 +38,12 @@ public class Usuario implements Serializable {
 	private String email;
 	@Column(name = "passwd")
 	private String passwd;
-	@Column(name = "fechaNacimiento")
+	@Column(name = "fecha_nacimiento")
 	private String fechaNacimiento;
 
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "usuario_rol", 
-	joinColumns = @JoinColumn(name = "idUsuario"), 
-	inverseJoinColumns = @JoinColumn(name = "id"))
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE },mappedBy="usuarios")
+
 
 	private Set<Rol> roles = new HashSet<>();
 

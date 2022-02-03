@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="display: flex; flex-flow: column wrap">
 <div class="container-fluid">
     <div th:if="${session.usuario != null}" th:href="@{/usuario/user{id}(id=${session.usuario.id})}">

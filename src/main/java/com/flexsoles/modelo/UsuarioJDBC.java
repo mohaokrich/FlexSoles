@@ -9,11 +9,17 @@ public class UsuarioJDBC extends DaoGenericoImpl<Usuario> implements UsuarioDAO 
 
 	@Override
 	public Usuario getUsuarios(String nombre) {
-		Query query = this.em.createQuery("FROM UsuariosSecurity WHERE nombre = :nombre");
-		query.setParameter("nombre", "%"+nombre+"%");
+		Query query = this.em.createQuery("FROM Usuario u WHERE u.nombre= :nombre");
+		query.setParameter("nombre", nombre);
+
+//		if (usuario != null) {
+//			return usuario;
+//		}
+//		return null;
 		return (Usuario) query.getSingleResult();
-	
 	}
+
+
 
 
 //	@Override
