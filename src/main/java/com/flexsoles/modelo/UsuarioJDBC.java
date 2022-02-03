@@ -19,6 +19,13 @@ public class UsuarioJDBC extends DaoGenericoImpl<Usuario> implements UsuarioDAO 
 		return (Usuario) query.getSingleResult();
 	}
 
+	@Override
+	public Usuario buscar(long id) {
+		Query query = this.em.createQuery("FROM Usuario u WHERE u.id= :id");
+		query.setParameter("id", id);
+		return (Usuario) query.getSingleResult();
+	}
+
 
 
 

@@ -27,21 +27,22 @@
         </a>
       </li>
       <li class="nav-item" th:if="${session.usuario != null}">
-        <!-- <a class="nav-link" th:if="${session.usuario.rol}=='ADMIN'"  th:href="@{/producto/crear}">Insertar</a> -->
-          <button type="button" th:if="${session.usuario != null}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <!--  <a class="nav-link" th:if="${session.usuario.rol}=='ADMIN'"  th:href="@{/producto/crear}">Insertar</a>-->
+          <button type="button" th:if="${session.usuario.rol == ADMIN}" class="btn btn-primary" data-toggle="modal" data-target="#modalInsertar">
  		  Insertar</button>
       </li>
       <li class="nav-item">
         <!--<a class="nav-link" th:href="@{/usuario/signup}">SIGNUP</a>  -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
  		  Registro</button>
       </li>
       <li class="nav-item" th:if="${session.usuario == null}">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalLogin">
  		  Login</button>
       </li>
       <li class="nav-item" th:if="${session.usuario != null}">
-        <a class="nav-link" th:href="@{/usuario/logout}">LOG OUT</a>
+        <button type="button" id="logOut" class="btn btn-primary" data-toggle="modal" data-target="@{/usuario/logout}">
+ 		  LogOut</button>
       </li>
     </ul>
   </div>

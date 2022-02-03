@@ -1,9 +1,5 @@
 package com.flexsoles.controller;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -47,12 +43,10 @@ public class UsuarioController {
 		return "redirect:/index";
 	}
 
-//	@RequestMapping(value = "/usuario/user{id}", method = RequestMethod.GET)
-//	public Usuario getPerfil(Model modelo, @PathVariable("id") long id) {
-//		// ((DaoGenerico<Usuario>) usuarioServicio).buscar(id);
-//		// modelo.addAttribute("ListaUsuarios", ListaUsuarios);
-//		return usuarioServicio.buscar(id);
-//	}
+	@RequestMapping(value = "/usuario/user{id}", method = RequestMethod.GET)
+	public Usuario getPerfil(Model modelo, @PathVariable("id") long id) {
+		return usuarioModelo.buscar(id);
+	}
 
 	// POST METHODS
 	@RequestMapping(value = "/usuario/signup", method = RequestMethod.POST)

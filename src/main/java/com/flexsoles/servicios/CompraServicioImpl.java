@@ -19,9 +19,6 @@ import com.flexsoles.persistencia.Usuario;
 @Service
 @Transactional
 public class CompraServicioImpl implements ComprasServicio{
-
-	@Autowired
-	private ComprasDAO comprasModelo;
 	
 	@Autowired
 	private ProductoDAO productoModelo;
@@ -38,8 +35,6 @@ public class CompraServicioImpl implements ComprasServicio{
 			Producto p = productoModelo.buscar(linea.getIdProducto());
 			compra.anadirCompraProducto(p, linea.getCantidad());
 		}
-		
-	
 
 		//SI ES 0 O NULO HA FALLADO
 		if(resultado == 0){

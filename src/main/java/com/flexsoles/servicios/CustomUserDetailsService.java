@@ -29,10 +29,10 @@ public class CustomUserDetailsService implements UserDetailsService{
 		Set<Rol> l = usuario.getRoles();
 		HashSet<Rol> roles = new HashSet<>();
 
-		
+		/*
 		l.stream().forEach(roles::add);
 		
-		usuario.setRoles(roles);
+		usuario.setRoles(roles);*/
 		
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		for (Rol rol : usuario.getRoles()) {

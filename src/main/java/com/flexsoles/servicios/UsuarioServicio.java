@@ -7,6 +7,5 @@ import com.flexsoles.persistencia.Usuario;
 
 public interface UsuarioServicio extends UserDetailsService, DaoGenerico<Usuario>{
 	public Usuario buscarPorNombreUsuario(String username);
-	public Usuario crearUsuario(Usuario u);
-	
+	public Usuario crearUsuario(Usuario u);	
 }
