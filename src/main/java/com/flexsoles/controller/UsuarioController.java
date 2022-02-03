@@ -30,10 +30,10 @@ public class UsuarioController {
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//GET METHODS
-	@RequestMapping(value = "/usuario/login", method = RequestMethod.GET)
-	public String getLogin() {
-		return "/usuario/login";
-	}
+//	@RequestMapping(value = "/usuario/login", method = RequestMethod.GET)
+//	public String getLogin() {
+//		return "/usuario/login";
+//	}
 
 	@RequestMapping(value = "/usuario/signup", method = RequestMethod.GET)
 	public String getRegistro() {
