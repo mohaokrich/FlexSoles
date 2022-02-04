@@ -82,14 +82,15 @@ public class Compra implements Serializable {
 	}
 
 	
-	public void anadirCompraProducto (Producto p, int unidades) {
+	public CompraProducto anadirCompraProducto (Producto p, int unidades) {
 		
-		CompraProducto cp = new CompraProducto();
+		CompraProducto cp = new CompraProducto(this, p, unidades);
 		cp.setCompra(this);
 		cp.setProducto(p);
 		cp.setUnidades(unidades);
 	
 		this.getCompras().add(cp);
+		return cp;
 	}
 
 }

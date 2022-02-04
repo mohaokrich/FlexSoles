@@ -17,7 +17,7 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
 @Entity(name = "Producto")
-@Table(name = "Producto")
+@Table(name = "producto")
 @NaturalIdCache
 public class Producto implements Serializable {
 
@@ -26,7 +26,7 @@ public class Producto implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	@NaturalId
+
 	private String titulo;
 
 	private String descripcion;
@@ -36,7 +36,7 @@ public class Producto implements Serializable {
 	private int descuento;
 
 	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<CompraProducto> comprasProductos = new HashSet <CompraProducto>();
+	private Set<CompraProducto> compra_producto = new HashSet <CompraProducto>();
 
 	// CONSTRUCTORES
 
@@ -109,16 +109,16 @@ public class Producto implements Serializable {
 	}
 
 	public Set<CompraProducto> getComprasProductos() {
-		return comprasProductos;
+		return compra_producto;
 	}
 
 	public void setComprasProductos(Set<CompraProducto> comprasProductos) {
-		this.comprasProductos = comprasProductos;
+		this.compra_producto = comprasProductos;
 	}
 
 	public void anadirCompraProducto (CompraProducto cp) {
 		
-		this.comprasProductos.add(cp);
+		this.compra_producto.add(cp);
 	}
 	
 	

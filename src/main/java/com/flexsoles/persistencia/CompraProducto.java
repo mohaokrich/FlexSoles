@@ -19,9 +19,6 @@ public class CompraProducto {
 	@EmbeddedId
 	private CompraProductoId id;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="idcompra",referencedColumnName = "idcompra", insertable = false, updatable = false)
-//	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("id_compra")
 	private Compra compra;
@@ -38,7 +35,7 @@ public class CompraProducto {
 	public CompraProducto() {
 	}
 
-	public CompraProducto(CompraProductoId id, Compra compra, Producto producto, int unidades) {
+	public CompraProducto(Compra compra, Producto producto, int unidades) {
 		this.id = new CompraProductoId(compra.getIdCompra(), producto.getId());
 		this.compra = compra;
 		this.producto = producto;
