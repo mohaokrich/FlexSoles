@@ -6,7 +6,7 @@
 	<title>Nike Dunk Low Retro Premium</title>
 </head>
 
-<body class="producto">
+<body>
 	<div class="container-fluid" style="display:flex; justify-content:center; flex-direction:column">
 		<!-- HEADER APERTURA-->
 		<div th:replace="header"></div>
@@ -16,8 +16,7 @@
 		<nav th:replace="navbar"></nav>
 		<!-- NAVAR CIERRE-->
 
-		<form th:action="@{/compra/cesta}" method="POST">
-
+		<form class="producto" th:action="@{/compra/cesta}" method="POST">
 			<section>
 				<aside>
 					<img th:src="@{/img/dunk_negras_1.jpg}" alt="dunk_negras_1">
@@ -39,7 +38,7 @@
 				</span>
 			</section>
 		</form>
-		<article id="{id}" name="{titulo}" th:each="producto: ${ListaProductos}">
+		<article class="producto" id="{id}" name="{titulo}" th:each="producto: ${ListaProductos}">
 			<a th:href="@{/producto/borrar/{id}(id=${producto.id})}"><button>Borrar Producto</button></a>
 		</article>
 	</div>

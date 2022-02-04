@@ -11,7 +11,7 @@
 		<div th:replace="header"></div>
 		<!-- HEADER APERTURA-->
 		<nav th:replace="navbar"></nav>
-		<h1>Mis compras</h1>
+		<h1 style="text-align: center; margin-top: 2%;">Mis compras</h1>
 		<div id="${idUsuario}" th:each="usuario: ${ListaUsuarios}">
 			<input type="hidden" id="idUsuario" name="idUsuario" th:value="${session.usuario.id}">
 		</div>

@@ -4,14 +4,20 @@
     align-items: center;
 }
     .producto img{
-        height: 260px;
-        width: 181px;
+        height: 360px;
+        width: 281px;
         margin: 3%;
+        transition: transform .2s; 
+
     }
+	    .producto img:hover {
+	   		 transform: scale(1.5); 
+		}
     .producto section{
         display: flex;
         justify-content: center;
-        margin: 1%;
+        margin: 7% 1% 1% 1%;
+
     }
     .producto aside{
         display: flex;
@@ -26,4 +32,7 @@
     }
 .producto span{
 	margin-top: 5%;
+}
+.card-header{
+	background-color: #0275d8;
 }
