@@ -99,7 +99,7 @@ public class CompraController {
 			c.setIdUsuario(user.getId());
 			c.setIdProducto(carrito.get(i).getIdProducto());
 			cp.setUnidades(carrito.get(i).getCantidad());
-		}
+		}					
 
 		comprasModelo.crear(c);
 

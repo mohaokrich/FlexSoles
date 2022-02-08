@@ -22,25 +22,16 @@ import com.flexsoles.servicios.UsuarioServicio;
 public class UsuarioController {
 	@Autowired
 	UsuarioServicio usuarioServicio;
-	@Autowired 
+	@Autowired
 	UsuarioDAO usuarioModelo;
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-
-	
-	//GET METHODS
-//	@RequestMapping(value = "/usuario/login", method = RequestMethod.GET)
-//	public String getLogin() {
-//		return "/usuario/login";
-//	}
-
 
 	// GET METHODS
 	@RequestMapping(value = "/usuario/login", method = RequestMethod.GET)
 	public String getLogin() {
 		return "redirect:/index";
 	}
-
 
 	@RequestMapping(value = "/usuario/signup", method = RequestMethod.GET)
 	public String getRegistro() {
@@ -53,16 +44,13 @@ public class UsuarioController {
 		session.invalidate();
 		return "redirect:/index";
 	}
+
 	@RequestMapping(value = "/usuario/user{id}", method = RequestMethod.GET)
 	public String getPerfil(Model modelo, @PathVariable("id") long id) {
 		Usuario usuario = usuarioModelo.buscar(id);
 		modelo.addAttribute("usuario", usuario);
 		return "/usuario/user";
 	}
-//	@RequestMapping(value = "/usuario/user/{id}", method = RequestMethod.GET)
-//	public Usuario getPerfil(Model modelo, @PathVariable("id") long id) {
-//		return usuarioModelo.buscar(id);
-//	}
 
 	// POST METHODS
 	@RequestMapping(value = "/usuario/signup", method = RequestMethod.POST)
@@ -86,12 +74,4 @@ public class UsuarioController {
 
 		return "redirect:/usuario/login";
 	}
-/*
-	@RequestMapping(value = "/usuario/login", method = RequestMethod.POST)
-	public String iniciarSesion(Model modelo, @RequestParam String nombre, @RequestParam String passwd,
-			HttpSession session) {
-		Usuario usuario = usuarioModelo.iniciarSesion(nombre, passwd);
-		session.setAttribute("usuario", usuario);
-		return "redirect:/index";
-	}*/
 }

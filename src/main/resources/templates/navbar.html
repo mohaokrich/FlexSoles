@@ -54,7 +54,7 @@
 		</div>
 		<form class="d-flex" th:object="${titulo}" th:action="@{/producto/buscar}" method="GET">
 			<input type="text" class="form-control me-sm-2" id="{titulo}" th:value="${titulo}" name="busqueda">
-			<input type="submit" class="btn btn-secondary my-2 my-sm-0" value="Buscar">
+			<input type="submit" class="btn btn-outline-secondary" value="Buscar">
 		</form>
 		<div>
 			<a class="navbar-brand" th:href="@{/compra/cesta}">

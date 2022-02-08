@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -15,30 +18,33 @@ import javax.persistence.Table;
 @Table(name = "compra_producto")
 public class CompraProducto {
 	// ATRIBUTOS
-	
-	@EmbeddedId
-	private CompraProductoId id;
-	
+
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//	@Column(name = "id", updatable = false, nullable = false)
+
 //	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name="idcompra",referencedColumnName = "idcompra", insertable = false, updatable = false)
-//	
+
+	@EmbeddedId
+	private CompraProductoId id;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("id_compra")
+	@MapsId("idCompra")
 	private Compra compra;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("id_producto")
+	@MapsId("idProducto")
 	private Producto producto;
 
 	@Column(name = "unidades")
 	private int unidades;
-	
 
 	// CONSTRUCTORES
 	public CompraProducto() {
 	}
 
-	public CompraProducto(CompraProductoId id, Compra compra, Producto producto, int unidades) {
+	public CompraProducto(Compra compra, Producto producto, int unidades) {
 		this.id = new CompraProductoId(compra.getIdCompra(), producto.getId());
 		this.compra = compra;
 		this.producto = producto;
@@ -68,7 +74,6 @@ public class CompraProducto {
 	}
 
 	public void setProducto(Producto producto) {
-		
 		producto.anadirCompraProducto(this);
 		this.producto = producto;
 	}
@@ -81,25 +86,21 @@ public class CompraProducto {
 		this.unidades = unidades;
 	}
 
-	
-	
-	
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-
-		if (o == null || getClass() != o.getClass())
-			return false;
-
-		CompraProducto that = (CompraProducto) o;
-		return Objects.equals(compra, that.compra) && Objects.equals(producto, that.producto);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(compra, producto
-				);
-	}
+//	@Override
+//	public boolean equals(Object o) {
+//		if (this == o)
+//			return true;
+//
+//		if (o == null || getClass() != o.getClass())
+//			return false;
+//
+//		CompraProducto that = (CompraProducto) o;
+//		return Objects.equals(compra, that.compra) && Objects.equals(producto, that.producto);
+//	}
+//
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(compra, producto);
+//	}
 
 }

@@ -3,6 +3,7 @@ CREATE DATABASE FlexSoles;
 USE FlexSoles;
 
 
+
 CREATE TABLE IF NOT EXISTS producto(
 	 id bigint not null primary key auto_increment,
 	 titulo varchar(50) not null,
@@ -14,9 +15,7 @@ CREATE TABLE IF NOT EXISTS producto(
 CREATE TABLE IF NOT EXISTS roles(
 	 id bigint not null primary key auto_increment,
 	 nombre_rol varchar(20) not null);
-
-
-     
+ 
 
 CREATE TABLE IF NOT EXISTS usuario_security(
 	 id bigint not null primary key auto_increment,
@@ -27,40 +26,38 @@ CREATE TABLE IF NOT EXISTS usuario_security(
 	 passwd varchar(100) not null,
 	 fecha_nacimiento varchar(80) not null);
 	 
-	 CREATE TABLE IF NOT EXISTS usuario_rol(
+CREATE TABLE IF NOT EXISTS usuario_rol(
 	 id bigint not null, 
-     
 	 id_usuario bigint not null,
      primary key(id, id_usuario),
 	 FOREIGN KEY (id) REFERENCES roles(id),
      FOREIGN KEY(id_usuario) REFERENCES usuario_security(id));
-	 
+
+SET FOREIGN_KEY_CHECKS = 0;
+
 CREATE TABLE IF NOT EXISTS compra(
 	  id bigint not null primary key auto_increment,
 	  id_usuario bigint not null,
 	  id_producto bigint not null,
-	  unidades int not null,
 	  FOREIGN KEY (id_usuario) REFERENCES usuario_security(id),
 	  FOREIGN KEY(id_producto) REFERENCES producto(id));
 
 
-
 CREATE TABLE IF NOT EXISTS compra_producto(
 	id bigint not null primary key auto_increment primary key,
-    id_compra bigint not null,
-    id_producto bigint not null,
+    compra_id bigint not null,
+    producto_id bigint not null,
     unidades int not null,
-    FOREIGN KEY (id_compra) REFERENCES compra(id),
-    FOREIGN KEY (id_producto) REFERENCES producto(id)
+    FOREIGN KEY (compra_id) REFERENCES compra(id),
+    FOREIGN KEY (producto_id) REFERENCES producto(id)
 );
 
 CREATE TABLE IF NOT EXISTS compra_producto_id(
 	id_compra bigint not null,
 	id_producto bigint not null,
-    FOREIGN KEY (id_compra) REFERENCES compra_producto(id_compra),
-    FOREIGN KEY (id_producto) REFERENCES compra_producto(id_producto)
+    FOREIGN KEY (id_compra) REFERENCES compra_producto(compra_id),
+    FOREIGN KEY (id_producto) REFERENCES compra_producto(producto_id)
 );
-
 
 
 

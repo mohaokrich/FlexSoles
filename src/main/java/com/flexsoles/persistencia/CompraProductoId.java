@@ -2,43 +2,63 @@ package com.flexsoles.persistencia;
 
 import java.io.Serializable;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Table;
 
 @Embeddable
+@Table(name = "compra_producto_id")
 public class CompraProductoId implements Serializable {
-	//ATRIBUTOS
+	// ATRIBUTOS
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "id_compra")
-	private long id_compras;
-	@Column(name = "id_producto")
-	private long id_producto;
-	
-	//CONSTRUCTORES
-	public CompraProductoId() {}
+	@Column(name = "compra_id")
+	private long idCompra;
+	@Column(name = "producto_id")
+	private long idProducto;
 
-	public CompraProductoId(long id_compras, long id_producto) {
+	// CONSTRUCTORES
+	public CompraProductoId() {
+	}
+
+	public CompraProductoId(long id_compra, long id_producto) {
 		super();
-		this.id_compras = id_compras;
-		this.id_producto = id_producto;
+		this.idCompra = id_compra;
+		this.idProducto = id_producto;
 	}
 
 	public long getIdCompras() {
-		return id_compras;
+		return idCompra;
 	}
 
-	public void setIdCompras(long idCompras) {
-		this.id_compras = idCompras;
+	public void setIdCompras(long idCompra) {
+		this.idCompra = idCompra;
 	}
 
 	public long getIdProducto() {
-		return id_producto;
+		return idProducto;
 	}
 
 	public void setIdProducto(long idProducto) {
-		this.id_producto = idProducto;
+		this.idProducto = idProducto;
 	}
-	
-	
+
+//	@Override
+//	public boolean equals(Object o) {
+//		if (this == o)
+//			return true;
+//
+//		if (o == null || getClass() != o.getClass())
+//			return false;
+//
+//		CompraProductoId that = (CompraProductoId) o;
+//		return Objects.equals(idCompra, that.idCompra) && Objects.equals(idProducto, that.idProducto);
+//	}
+//
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(idCompra, idProducto);
+//	}
 }

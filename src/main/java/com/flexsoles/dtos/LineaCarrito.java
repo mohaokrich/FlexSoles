@@ -3,35 +3,39 @@ package com.flexsoles.dtos;
 import java.io.Serializable;
 
 public class LineaCarrito implements Serializable{
-	private long idProducto;
-	private String nombreProducto;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private long id_producto;
+	private String nombre_producto;
 	private int cantidad;
 
 	public LineaCarrito() {
 		super();
 	}
 
-	public LineaCarrito(long idProducto, String nombreProducto, int cantidad) {
+	public LineaCarrito(long id_producto, String nombre_producto, int cantidad) {
 		super();
-		this.idProducto = idProducto;
-		this.nombreProducto = nombreProducto;
+		this.id_producto = id_producto;
+		this.nombre_producto = nombre_producto;
 		this.cantidad = cantidad;
 	}
 
 	public long getIdProducto() {
-		return idProducto;
+		return id_producto;
 	}
 
-	public void setIdProducto(long idProducto) {
-		this.idProducto = idProducto;
+	public void setIdProducto(long id_producto) {
+		this.id_producto = id_producto;
 	}
 
 	public String getNombreProducto() {
-		return nombreProducto;
+		return nombre_producto;
 	}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
+	public void setNombreProducto(String nombre_producto) {
+		this.nombre_producto = nombre_producto;
 	}
 
 	public int getCantidad() {

@@ -52,7 +52,6 @@ public class CompraServicioImpl implements ComprasServicio{
 
 	@Override
 	public CompraProducto getUnidades(Compra c) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

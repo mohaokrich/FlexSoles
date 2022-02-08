@@ -1,5 +1,4 @@
 package com.flexsoles.persistencia;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -7,8 +6,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,16 +24,18 @@ public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	// ATRIBUTOS
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private long id;
-	@NaturalId
+	@Column(name = "titulo")
 	private String titulo;
-
+	@Column(name = "descripcion")
 	private String descripcion;
-
+	@Column(name = "precio")
 	private double precio;
-
+	@Column(name = "descuento")
 	private int descuento;
 
 	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -125,20 +128,24 @@ public class Producto implements Serializable {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+//	@Override
+//	public boolean equals(Object o) {
+//		if (this == o)
+//			return true;
+//		if (o == null || getClass() != o.getClass())
+//			return false;
+//		Producto producto = (Producto) o;
+//		return Objects.equals(titulo, producto.titulo)
+//			&& Objects.equals(descripcion, producto.descripcion)
+//			&& Objects.equals(precio, producto.precio)
+//			&& Objects.equals(descuento, producto.descuento);
+//	}
+//
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(titulo, descripcion, precio, descuento);
+//	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Producto producto = (Producto) o;
-		return Objects.equals(titulo, producto.titulo);
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(titulo);
-	}
 
 }
