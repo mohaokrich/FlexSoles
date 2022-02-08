@@ -19,6 +19,7 @@ import javax.persistence.Table;
 public class CompraProducto {
 	// ATRIBUTOS
 
+
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 //	@Column(name = "id", updatable = false, nullable = false)
@@ -28,7 +29,6 @@ public class CompraProducto {
 
 	@EmbeddedId
 	private CompraProductoId id;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("idCompra")
 	private Compra compra;

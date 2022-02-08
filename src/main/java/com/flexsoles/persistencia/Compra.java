@@ -2,7 +2,6 @@ package com.flexsoles.persistencia;
 
 import java.io.Serializable;
 
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -89,13 +88,16 @@ public class Compra implements Serializable {
 		this.compras = compras;
 	}
 
-	public void anadirCompraProducto(Producto p, int unidades) {
-		CompraProducto cp = new CompraProducto();
+	public CompraProducto anadirCompraProducto(Producto p, int unidades) {
+
+		CompraProducto cp = new CompraProducto(this, p, unidades);
+
 		cp.setCompra(this);
 		cp.setProducto(p);
 		cp.setUnidades(unidades);
 
 		this.getCompras().add(cp);
+		return cp;
 	}
 
 //	@Override

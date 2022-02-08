@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.flexsoles.dtos.LineaCarrito;
+import com.flexsoles.modelo.CompraProductoDAO;
 import com.flexsoles.modelo.ComprasDAO;
 import com.flexsoles.modelo.ProductoDAO;
 import com.flexsoles.persistencia.Compra;
@@ -22,6 +23,11 @@ public class CompraServicioImpl implements ComprasServicio{
 	
 	@Autowired
 	private ProductoDAO productoModelo;
+	@Autowired
+	private ComprasDAO comprasModelo;
+	@Autowired
+	private CompraProductoDAO compraProductoModelo;
+	
 	
 	
 	@Override
@@ -33,9 +39,17 @@ public class CompraServicioImpl implements ComprasServicio{
 		Compra compra = new Compra();
 		for (LineaCarrito linea : listaCarrito) {
 			Producto p = productoModelo.buscar(linea.getIdProducto());
-			compra.anadirCompraProducto(p, linea.getCantidad());
+			CompraProducto cp = compra.anadirCompraProducto(p, linea.getCantidad());
+	
+			compraProductoModelo.crear(cp);
+			//compraporductomodelo.crear CP
+			productoModelo.actualizar(p);
+			
 		}
-
+		comprasModelo.actualizar(compra);
+		//compramodelo.actualizar compra
+		
+		
 		//SI ES 0 O NULO HA FALLADO
 		if(resultado == 0){
 			return null;
