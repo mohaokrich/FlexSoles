@@ -37,13 +37,22 @@ public class CompraServicioImpl implements ComprasServicio{
 		if (listaCarrito == null || listaCarrito.isEmpty()) return null; 
 		
 		Compra compra = new Compra();
+		compra.setIdUsuario(u.getId());
+		compra =comprasModelo.crear(compra);
 		for (LineaCarrito linea : listaCarrito) {
 			Producto p = productoModelo.buscar(linea.getIdProducto());
+			
 			CompraProducto cp = compra.anadirCompraProducto(p, linea.getCantidad());
-	
+			
+			//Aºadimos porducto compra al prodcuto
+			p.getComprasProductos().add(cp);
+			// Aºadimos producto compra a la compra
+			compra.getCompras().add(cp);
+			
 			compraProductoModelo.crear(cp);
 			//compraporductomodelo.crear CP
 			productoModelo.actualizar(p);
+			
 			
 		}
 		comprasModelo.actualizar(compra);
@@ -51,22 +60,19 @@ public class CompraServicioImpl implements ComprasServicio{
 		
 		
 		//SI ES 0 O NULO HA FALLADO
-		if(resultado == 0){
-			return null;
-		}else {
-			return compra;
-		}
+					return compra;
+
 
 	}
 
 	@Override
 	public List<Compra> getCompras(Long idUsuario) {
-		return null;
+		return (List<Compra>) comprasModelo.buscarCompras(idUsuario);
 	}
 
 	@Override
-	public CompraProducto getUnidades(Compra c) {
-		return null;
+	public int obtenerUnidades(CompraProducto c) {
+		return c.getUnidades();
 	}
 
 

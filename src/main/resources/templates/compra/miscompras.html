@@ -15,15 +15,15 @@
 		<div id="${idUsuario}" th:each="usuario: ${ListaUsuarios}">
 			<input type="hidden" id="idUsuario" name="idUsuario" th:value="${session.usuario.id}">
 		</div>
-		<article id="${id}" name="${session.nombre}" th:each="compras: ${listaComprasRealizadas}">
-			<input type="hidden" id="id" name="id" th:value="${compras.idUsuario}">
+		<article id="${id}" name="${session.nombre}" th:each="compras : ${listaComprasRealizadas}">
+			<!--<input type="hidden" id="id" name="id" th:value="${compras.idUsuario}">-->
 			<table>
 				<thead>
 					<tr>
 						<th> ID </th>
 						<th> ID USUARIO </th>
-						<th> ID PRODUCTO </th>
 						<th> CANTIDAD </th>
+						<th> ID PRODUCTO </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,10 +31,10 @@
 						<td colspan="2"> No hay compras realizadas </td>
 					</tr>
 					<tr>
-						<td><span th:text="${compras.idCompra}"> idUsuario </span></td>
-						<td><span th:text="${compras.idUsuario}"> idUsuario </span></td>
-						<td><span th:text="${compras.idProducto}"> idProducto </span></td>
-						<td><span th:text="${compras.cantidad}">unidades</span></td>
+						<td><span th:text="${compras[0].id_compra}"> idCompra </span></td>
+						<td><span th:text="${compras[0].idUsuario}"> idUsuario </span></td>
+						<td><span th:text="${compras[1].unidades}">unidades</span></td>-->
+						<!--<td><span th:text="${comprasProducto.producto}"> idProducto </span></td>-->
 						<td><a th:href="@{/compra/devolverCompra{id}(id=${compras.idCompra})}"><button>Devolver
 									compra</button></a></td>
 					</tr>

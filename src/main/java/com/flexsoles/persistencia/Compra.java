@@ -21,31 +21,38 @@ import org.hibernate.annotations.NaturalIdCache;
 @Table(name = "compra")
 @NaturalIdCache
 public class Compra implements Serializable {
+<<<<<<< HEAD
+=======
+
+
+	/**
+	 * 
+	 */
+>>>>>>> 94a8a49dc961e4dfd73ea3bc990d35ed1b5ee56c
 	private static final long serialVersionUID = 1L;
 	// ATRIBUTOS
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id_compra;
-	@Column(name = "id_producto")
-	private long idProducto;
+	private Long id_compra;
+
 	@Column(name = "id_usuario")
-	private long idUsuario;
+	private Long idUsuario;
 
 	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CompraProducto> compras = new HashSet<CompraProducto>();
 
 	// CONSTRUCTORES
-	public Compra(long idUsuario, long idProducto) {
+	public Compra(long idUsuario) {
 		super();
-		this.idProducto = idProducto;
+
 		this.idUsuario = idUsuario;
 	}
 
-	public Compra(long idCompra, long idUsuario, long idProducto) {
+	public Compra(long idCompra, long idUsuario) {
 		super();
 		this.id_compra = idCompra;
-		this.idProducto = idProducto;
+
 		this.idUsuario = idUsuario;
 
 	}
@@ -54,27 +61,21 @@ public class Compra implements Serializable {
 	}
 
 	// GETTERS && SETTERS
-	public long getIdCompra() {
+	public Long getIdCompra() {
 		return id_compra;
 	}
 
-	public void setIdCompra(long idCompra) {
+	public void setIdCompra(Long idCompra) {
 		this.id_compra = idCompra;
 	}
 
-	public long getIdProducto() {
-		return idProducto;
-	}
 
-	public void setIdProducto(long idProducto) {
-		this.idProducto = idProducto;
-	}
 
-	public long getIdUsuario() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(long idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -84,7 +85,7 @@ public class Compra implements Serializable {
 
 	public void setCompras(Set<CompraProducto> compras) {
 		this.compras = compras;
-	}
+	}	
 
 	public CompraProducto anadirCompraProducto(Producto p, int unidades) {
 
