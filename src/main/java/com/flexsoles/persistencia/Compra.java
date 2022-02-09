@@ -22,9 +22,7 @@ import org.hibernate.annotations.NaturalIdCache;
 @NaturalIdCache
 public class Compra implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	// ATRIBUTOS
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
