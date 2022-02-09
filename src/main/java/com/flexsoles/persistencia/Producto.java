@@ -1,7 +1,7 @@
 package com.flexsoles.persistencia;
 import java.io.Serializable;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,8 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
 @Entity(name = "Producto")
@@ -28,7 +26,7 @@ public class Producto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 	@Column(name = "titulo")
 	private String titulo;
 	@Column(name = "descripcion")
@@ -91,11 +89,11 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

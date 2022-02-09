@@ -36,7 +36,7 @@ public class CompraController {
 	}
 	@RequestMapping(value = "/compra/miscompras{id}", method = RequestMethod.GET)
 	public String getComprasRealizadas(Model modelo, @PathVariable("id") long id) {
-		List<Compra> listaComprasRealizadas = (List<Compra>) comprasModelo.buscar(id);
+		List<Compra> listaComprasRealizadas = comprasServicio.getCompras(id);
 		modelo.addAttribute("listaComprasRealizadas", (listaComprasRealizadas));
 		return "/compra/miscompras";
 	}
@@ -93,19 +93,18 @@ public class CompraController {
 		List<LineaCarrito> carrito = (List<LineaCarrito>) session.getAttribute("carrito");
 		
 		Compra c = comprasServicio.realizarCompra(user, carrito);
-		CompraProducto cp = comprasServicio.getUnidades(c);
+		/* cp = comprasServicio.getUnidades(c);
 
 		for (int i = 0; i < carrito.size(); i++) {
 			c.setIdUsuario(user.getId());
-			c.setIdProducto(carrito.get(i).getIdProducto());
 			cp.setUnidades(carrito.get(i).getCantidad());
 		}					
+*/
+		//comprasModelo.crear(c);
 
-		comprasModelo.crear(c);
-
-		if (c == null) {
-			return "redirect:/index";
-		}
+//		if (c == null) {
+//			return "redirect:/index";
+//		}
 
 		return "redirect:/index";
 	}

@@ -1,14 +1,10 @@
 package com.flexsoles.persistencia;
 
 import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -30,11 +26,13 @@ public class CompraProducto {
 	@EmbeddedId
 	private CompraProductoId id;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("idCompra")
+	@MapsId("id_compra")
+	@JoinColumn(name = "id_compra")
 	private Compra compra;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("idProducto")
+	@MapsId("id_producto")
+	@JoinColumn(name = "id_producto")
 	private Producto producto;
 
 	@Column(name = "unidades")

@@ -9,41 +9,45 @@ import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @Embeddable
-@Table(name = "compra_producto_id")
 public class CompraProductoId implements Serializable {
 	// ATRIBUTOS
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "compra_id")
-	private long idCompra;
-	@Column(name = "producto_id")
-	private long idProducto;
+	@Column(name = "id_compra")
+	private Long idCompra;
+	@Column(name = "id_producto")
+	private Long idProducto;
 
 	// CONSTRUCTORES
 	public CompraProductoId() {
 	}
 
-	public CompraProductoId(long id_compra, long id_producto) {
-		super();
-		this.idCompra = id_compra;
-		this.idProducto = id_producto;
-	}
-
-	public long getIdCompras() {
+	public Long getIdCompra() {
 		return idCompra;
 	}
 
-	public void setIdCompras(long idCompra) {
+	public CompraProductoId(Long idCompra, Long idProducto) {
+		super();
+		this.idCompra = idCompra;
+		this.idProducto = idProducto;
+	}
+
+	public void setIdCompra(Long idCompra) {
 		this.idCompra = idCompra;
 	}
 
-	public long getIdProducto() {
+	public Long getIdProducto() {
 		return idProducto;
 	}
 
-	public void setIdProducto(long idProducto) {
+	public void setIdProducto(Long idProducto) {
 		this.idProducto = idProducto;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 //	@Override
 //	public boolean equals(Object o) {

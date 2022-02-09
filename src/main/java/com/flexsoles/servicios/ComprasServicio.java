@@ -11,7 +11,9 @@ import com.flexsoles.persistencia.Usuario;
 public interface ComprasServicio {
 
 	Compra realizarCompra (Usuario u, List<LineaCarrito> listaCarrito);
+	//List<Compra> getCompras(Long idUsuario);
+	int obtenerUnidades(CompraProducto c);
+	//List<Compra> getCompras(Long idUsuario, Long idCompra);
 	List<Compra> getCompras(Long idUsuario);
-	CompraProducto getUnidades(Compra c);
 
 }
