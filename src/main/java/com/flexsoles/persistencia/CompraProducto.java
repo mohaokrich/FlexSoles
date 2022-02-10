@@ -1,18 +1,10 @@
 package com.flexsoles.persistencia;
 
-<<<<<<< HEAD
-
-=======
-import java.util.Objects;
->>>>>>> 94a8a49dc961e4dfd73ea3bc990d35ed1b5ee56c
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-<<<<<<< HEAD
-=======
 import javax.persistence.JoinColumn;
->>>>>>> 94a8a49dc961e4dfd73ea3bc990d35ed1b5ee56c
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -50,7 +42,7 @@ public class CompraProducto {
 	}
 
 	public CompraProducto(Compra compra, Producto producto, int unidades) {
-		this.id = new CompraProductoId(compra.getIdCompra(), producto.getId());
+		this.id = new CompraProductoId(compra.getId_compra(), producto.getId());
 		this.compra = compra;
 		this.producto = producto;
 		this.unidades = unidades;

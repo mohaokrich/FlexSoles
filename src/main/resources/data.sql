@@ -15,3 +15,6 @@ INSERT INTO roles(nombre_rol) VALUES("ADMIN");
 
 
 INSERT INTO usuario_security(nombre, apellidos, email, passwd, fecha_nacimiento)VALUES("david","ch","c@c.es","$2a$10$uZWHQAi8GnVPyx4CG0NOeOy3rssrRKmNhOMdDmxGmze515/Kj8aCS","10-02-2022");
+
+
+INSERT INTO usuario_rol(id, id_usuario) VALUES(2,1);

@@ -2,6 +2,8 @@ package com.flexsoles.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.flexsoles.dtos.LineaCarrito;
 import com.flexsoles.modelo.ComprasDAO;
 import com.flexsoles.persistencia.Compra;
-import com.flexsoles.persistencia.CompraProducto;
 import com.flexsoles.persistencia.Usuario;
 import com.flexsoles.servicios.ComprasServicio;
 
@@ -36,8 +37,8 @@ public class CompraController {
 	}
 	@RequestMapping(value = "/compra/miscompras{id}", method = RequestMethod.GET)
 	public String getComprasRealizadas(Model modelo, @PathVariable("id") long id) {
-		List<Compra> listaComprasRealizadas = comprasServicio.getCompras(id);
-		modelo.addAttribute("listaComprasRealizadas", (listaComprasRealizadas));
+		Set<Compra> listaComprasRealizadas = comprasServicio.getCompras(id);
+		modelo.addAttribute("listaComprasRealizadas", listaComprasRealizadas);
 		return "/compra/miscompras";
 	}
 	@RequestMapping(value = "/compra/devolverCompra{id}", method = RequestMethod.GET)
