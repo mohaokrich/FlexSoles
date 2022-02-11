@@ -1,4 +1,5 @@
 INSERT INTO producto(titulo,descripcion,precio,descuento) VALUES("Blazer MID Unisex","Modelo Blazer Mid color blanco para hombre y mujer",79.95,10);
+INSERT INTO producto(titulo,descripcion,precio,descuento) VALUES("Blazer MID Unisex","Modelo Blazer Mid color blanco para hombre y mujer",79.95,10);
 INSERT INTO producto(titulo,descripcion,precio,descuento) VALUES("Legend Essential 2","Modelo Legend essential 2 color rosa para mujer",47.95,10);
 INSERT INTO producto(titulo,descripcion,precio,descuento) VALUES("Force 1 Unisex","Modelo Force 1 color negro para hombre y mujer",0,10);
 INSERT INTO producto(titulo,descripcion,precio,descuento) VALUES("Air 1 MID","Modelo Air 1 MID color negro de la gama Jordan",119.95,15);

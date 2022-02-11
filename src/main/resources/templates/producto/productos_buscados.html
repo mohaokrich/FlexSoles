@@ -15,31 +15,35 @@
 		<!-- NAVAR APERTURA-->
 		<nav th:replace="navbar"></nav>
 		<!-- NAVAR CIERRE-->
-		<form class="producto" th:action="@{/compra/cesta}" method="POST">
-			<section>
+		<section style="display: flex; justify-content:center; margin:5%" class="producto"
+			th:each="productos : ${ListaProductos}">
+			<article>
 				<aside>
 					<img th:src="@{/img/dunk_negras_1.jpg}" alt="dunk_negras_1">
 					<img th:src="@{/img/dunk_negras_2.jpg}" alt="dunk_negras_2">
 					<img th:src="@{/img/dunk_negras_3.jpg}" alt="dunk_negras_3">
 					<img th:src="@{/img/dunk_negras_4.jpg}" alt="dunk_negras_4">
 				</aside>
-
 				<span>
-					<h2 th:text="${producto.titulo}"></h2>
-					<h3 th:text="${producto.precio}+'€'"></h3>
-					<h3 th:text="${producto.descuento}+'%'"></h3>
-					<p th:text="${producto.descripcion}"></p>
-
-					<input type="hidden" id="id" name="id" th:value="${producto.id}">
-					<input type="hidden" id="nombre" name="nombre" th:value="${producto.titulo}">
+					<h2 th:text="${productos.titulo}"></h2>
+					<h3 th:text="${productos.precio}+'€'"></h3>
+					<h3 th:text="${productos.descuento}+'%'"></h3>
+					<p th:text="${productos.descripcion}"></p>
+				  <form th:action="@{/compra/cesta}"  method="POST">
+					<input type="hidden" id="id" name="id" th:value="${productos.id}">
+					<input type="hidden" id="nombre" name="nombre" th:value="${productos.titulo}">
 					<input type="number" id="cantidad" name="cantidad" value="" min="1" max="100">
 					<input type="submit" value="Añadir a la cesta" />
+				  </form>
 				</span>
 				<article id="{id}" name="{titulo}" th:if="${session.usuario.rol} == ADMIN">
-					<a th:href="@{/producto/borrar/{id}(id=${producto.id})}"><button>Borrar Producto</button></a>
+					<a th:href="@{/producto/borrar/{id}(id=${productos.id})}"><button>Borrar Producto</button></a>
 				</article>
-			</section>
-		</form>
+			</article>
+		</section>
+		<section style="text-align: center" th:if="${ListaProductos} == null">
+			<h2>no existen productos con ese nombre</h2>
+		</section>
 	</div>
 </body>
 

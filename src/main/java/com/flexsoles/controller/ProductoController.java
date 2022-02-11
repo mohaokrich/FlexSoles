@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.flexsoles.modelo.ProductoDAO;
 import com.flexsoles.persistencia.Producto;
+import com.flexsoles.servicios.ProductoServicio;
 
 
 @Controller
 public class ProductoController {
 	@Autowired
 	private ProductoDAO productoModelo;
+	@Autowired
+	private ProductoServicio modeloProductoSer;
 	
 	// GET METHODS
 	@RequestMapping(value = "/producto/producto{id}", method = RequestMethod.GET)
@@ -41,9 +44,9 @@ public class ProductoController {
 
 	@RequestMapping(value = "/producto/buscar", method = RequestMethod.GET)
 	public String getBuscarProducto(Model modelo, @RequestParam String busqueda) {
-		List<Producto> ListaProductos = productoModelo.buscarNombre(busqueda);
-		modelo.addAttribute("ListaProductos", (ListaProductos));
-		return "/producto/producto";
+		List<Producto> ListaProductos = modeloProductoSer.obtenerListaProductos(busqueda);
+		modelo.addAttribute("ListaProductos", ListaProductos);
+		return "/producto/productos_buscados";
 	}
 	
 	

@@ -1,6 +1,7 @@
 package com.flexsoles.modelo;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import javax.persistence.Query;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.flexsoles.persistencia.Compra;
 import com.flexsoles.persistencia.Producto;
 
 @Repository
@@ -25,8 +27,9 @@ public class ProductoJDBC extends DaoGenericoImpl<Producto> implements ProductoD
 
 	@Override
 	public List<Producto> buscarNombre(String titulo) {
-		Query query = this.em.createQuery("FROM Producto WHERE titulo = :titulo");
-		query.setParameter("titulo", "%"+titulo+"%");
-		return (List<Producto>)query.getResultList();
+		Query query = this.em.createQuery("FROM Producto p WHERE p.titulo= :titulo");
+		query.setParameter("titulo", titulo);
+		List<Producto> lProductos = (List<Producto>) query.getResultList();
+		return lProductos;
 	}
 }

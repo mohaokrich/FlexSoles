@@ -1,6 +1,7 @@
 package com.flexsoles.persistencia;
 import java.io.Serializable;
 
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -73,6 +74,17 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getTitulo() {
 		return titulo;
 	}
@@ -89,12 +101,12 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Long getId() {
-		return id;
+	public double getPrecio() {
+		return precio;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setPrecio(double precio) {
+		this.precio = precio;
 	}
 
 	public int getDescuento() {
@@ -104,10 +116,9 @@ public class Producto implements Serializable {
 	public void setDescuento(int descuento) {
 		this.descuento = descuento;
 	}
-
-	public double getPrecio() {
-		return precio;
-	}
+	
+	
+	
 
 	public Set<CompraProducto> getComprasProductos() {
 		return compra_producto;
@@ -123,9 +134,6 @@ public class Producto implements Serializable {
 	}
 	
 	
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
 	
 //	@Override
 //	public boolean equals(Object o) {
