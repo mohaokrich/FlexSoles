@@ -1,8 +1,8 @@
 <html>
 
 <head>
-	<nav th:replace="head_elements"></nav>
-	<title>FLEX SOLE'S COMPRAS</title>
+<nav th:replace="head_elements"></nav>
+<title>FLEX SOLE'S COMPRAS</title>
 </head>
 
 <body>
@@ -13,35 +13,38 @@
 		<nav th:replace="navbar"></nav>
 		<h1 style="text-align: center; margin-top: 2%;">Mis compras</h1>
 		<div id="${idUsuario}" th:each="usuario: ${ListaUsuarios}">
-			<input type="hidden" id="idUsuario" name="idUsuario" th:value="${session.usuario.id}">
+			<input type="hidden" id="idUsuario" name="idUsuario"
+				th:value="${session.usuario.id}">
 		</div>
-		<article id="${id}" name="${session.nombre}" th:each="compras : ${listaComprasRealizadas}">
-			<!--<input type="hidden" id="id" name="id" th:value="${compras.idUsuario}">-->
-			<table>
-				<thead>
-					<tr>
-						<th> ID </th>
-						<th> ID USUARIO </th>
-						<th> CANTIDAD </th>
-						<th> ID PRODUCTO </th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:if="${listaComprasRealizadas.empty}">
-						<td colspan="2"> No hay compras realizadas </td>
-					</tr>
-					<tr>
-						<td><span th:text="${compras[0].id_compra}"> idCompra </span></td>
-						<td><span th:text="${compras[0].idUsuario}"> idUsuario </span></td>
-						<td><span th:text="${compras[1].unidades}">unidades</span></td>-->
-						<!--<td><span th:text="${comprasProducto.producto}"> idProducto </span></td>-->
-						<td><a th:href="@{/compra/devolverCompra{id}(id=${compras.idCompra})}"><button>Devolver
-									compra</button></a></td>
-					</tr>
-				</tbody>
-			</table>
-		</article>
+
 	</div>
+
+	<div id="accordion" th:each="compra : ${listaComprasRealizadas}">
+		<div class="card">
+			<div class="card-header" id="headingOne">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse"
+						data-target="#collapseOne" aria-expanded="true"
+						aria-controls="collapseOne">
+						<span th:text="'Compra '+${compra.id_compra}"></span>
+					</button>
+				</h5>
+			</div>
+
+			<div id="collapseOne" class="collapse show"
+				aria-labelledby="headingOne" data-parent="#accordion">
+				<div class="card-body" th:each="comprasProd : ${compra.compras}">
+					<span th:text="${comprasProd.producto.titulo}"></span>
+					</br>
+					<span th:text="${comprasProd.unidades}"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 </body>
 
 </html>

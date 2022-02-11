@@ -1,6 +1,7 @@
 package com.flexsoles.servicios;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -11,9 +12,9 @@ import com.flexsoles.dtos.LineaCarrito;
 import com.flexsoles.modelo.CompraProductoDAO;
 import com.flexsoles.modelo.ComprasDAO;
 import com.flexsoles.modelo.ProductoDAO;
+import com.flexsoles.modelo.UsuarioDAO;
 import com.flexsoles.persistencia.Compra;
 import com.flexsoles.persistencia.CompraProducto;
-import com.flexsoles.persistencia.CompraProductoId;
 import com.flexsoles.persistencia.Producto;
 import com.flexsoles.persistencia.Usuario;
 
@@ -27,38 +28,46 @@ public class CompraServicioImpl implements ComprasServicio {
 	private ComprasDAO comprasModelo;
 	@Autowired
 	private CompraProductoDAO compraProductoModelo;
+	@Autowired
+	private UsuarioDAO usuarioDao;
 
 	@Override
 	public Compra realizarCompra(Usuario u, List<LineaCarrito> listaCarrito) {
-		int resultado = 0;
 
 		if (listaCarrito == null || listaCarrito.isEmpty())
 			return null;
-
+		Usuario usuario = usuarioDao.buscar(u.getId());
 		Compra compra = new Compra();
-		compra.setIdUsuario(u.getId());
+		compra.setUsuario(usuario);
+		usuario.getCompras().add(compra);
 		compra = comprasModelo.crear(compra);
-		
 		for (LineaCarrito linea : listaCarrito) {
 			Producto p = productoModelo.buscar(linea.getIdProducto());
+
 			CompraProducto cp = compra.anadirCompraProducto(p, linea.getCantidad());
-			
+
+			// Aºadimos porducto compra al prodcuto
 			p.getComprasProductos().add(cp);
 			compra.getCompras().add(cp);
 
 			compraProductoModelo.crear(cp);
+			// compraporductomodelo.crear CP
 			productoModelo.actualizar(p);
 
 		}
 		comprasModelo.actualizar(compra);
 		// compramodelo.actualizar compra
+
+		// SI ES 0 O NULO HA FALLADO
 		return compra;
 
 	}
 
 	@Override
-	public List<Compra> getCompras(Long idUsuario) {
-		return (List<Compra>) comprasModelo.buscarCompras(idUsuario);
+	public Set<Compra> getCompras(Long idUsuario) {
+
+		Usuario u = usuarioDao.buscar(idUsuario);
+		return u.getCompras();
 	}
 
 	@Override

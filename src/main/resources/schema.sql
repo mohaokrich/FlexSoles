@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS FlexSoles;
+DROP DATABASE FlexSoles;
 CREATE DATABASE FlexSoles;
 USE FlexSoles;
 
@@ -34,11 +34,15 @@ CREATE TABLE IF NOT EXISTS usuario_rol(
      FOREIGN KEY(id_usuario) REFERENCES usuario_security(id));
 
 
+
+
+
 CREATE TABLE IF NOT EXISTS compra(
 	  id bigint not null primary key auto_increment,
 	  id_usuario bigint not null,
 	  FOREIGN KEY (id_usuario) REFERENCES usuario_security(id)
 	  );
+
 
 
 CREATE TABLE IF NOT EXISTS compra_producto(

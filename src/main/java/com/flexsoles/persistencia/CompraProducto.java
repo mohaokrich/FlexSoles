@@ -1,6 +1,5 @@
 package com.flexsoles.persistencia;
 
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -43,7 +42,7 @@ public class CompraProducto {
 	}
 
 	public CompraProducto(Compra compra, Producto producto, int unidades) {
-		this.id = new CompraProductoId(compra.getIdCompra(), producto.getId());
+		this.id = new CompraProductoId(compra.getId_compra(), producto.getId());
 		this.compra = compra;
 		this.producto = producto;
 		this.unidades = unidades;

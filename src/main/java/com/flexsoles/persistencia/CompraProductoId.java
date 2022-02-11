@@ -14,7 +14,7 @@ public class CompraProductoId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "id_compra")
-	private Long idCompra;
+	private Long id_compra;
 	@Column(name = "id_producto")
 	private Long idProducto;
 
@@ -22,19 +22,22 @@ public class CompraProductoId implements Serializable {
 	public CompraProductoId() {
 	}
 
-	public Long getIdCompra() {
-		return idCompra;
-	}
 
 	public CompraProductoId(Long idCompra, Long idProducto) {
 		super();
-		this.idCompra = idCompra;
+		this.id_compra = idCompra;
 		this.idProducto = idProducto;
 	}
 
-	public void setIdCompra(Long idCompra) {
-		this.idCompra = idCompra;
+	public Long getId_compra() {
+		return id_compra;
 	}
+
+
+	public void setId_compra(Long id_compra) {
+		this.id_compra = id_compra;
+	}
+
 
 	public Long getIdProducto() {
 		return idProducto;

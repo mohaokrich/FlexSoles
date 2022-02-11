@@ -67,11 +67,6 @@ public class UsuarioController {
 
 		usuarioServicio.crearUsuario(usuario);
 
-		// HAY QUE IMPLEMENTAR ESTO!
-//		long temp = usuarioModelo.getId(usuario.getNombre());
-//		usuarioModelo.saveTablaRoles(temp, "USER");
-//		usuarioModelo.saveRol(temp, temp);
-
 		return "redirect:/usuario/login";
 	}
 }

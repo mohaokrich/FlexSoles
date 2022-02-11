@@ -1,7 +1,7 @@
 package com.flexsoles.servicios;
 
 import java.util.List;
-
+import java.util.Set;
 
 import com.flexsoles.dtos.LineaCarrito;
 import com.flexsoles.persistencia.Compra;
@@ -14,6 +14,6 @@ public interface ComprasServicio {
 	//List<Compra> getCompras(Long idUsuario);
 	int obtenerUnidades(CompraProducto c);
 	//List<Compra> getCompras(Long idUsuario, Long idCompra);
-	List<Compra> getCompras(Long idUsuario);
+	Set<Compra> getCompras(Long idUsuario);
 
 }

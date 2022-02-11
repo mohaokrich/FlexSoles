@@ -12,11 +12,13 @@
 		<!-- HEADER APERTURA-->
 		<nav th:replace="navbar"></nav>
 		<h1 style="text-align: center; margin-top: 2%;">Carrito de la compra</h1>
+		
 		<form th:action="@{/compra/realizarCompra}" method="POST">
 			<article id="${session.id}" name="${session.nombre}" th:each="compras: ${ListaCompras}">
 				ID Producto <h2 th:text="${compras.idProducto}"></h2>
 				Nombre<h3 th:text="${compras.nombreProducto}"></h3>
 				Cantidad<h3 th:text="${compras.cantidad}"></h3>
+				<a th:href="@{/producto/borrar/{id}(id=${compras.idProducto})}"><button>Borrar Producto</button></a>
 			</article>
 			<div th:if="${session.usuario == null}">
 				<a th:href="@{/usuario/login}" class="card-link">Inicia sesion para comprar</a>

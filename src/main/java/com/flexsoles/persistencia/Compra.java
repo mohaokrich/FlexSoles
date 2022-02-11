@@ -9,9 +9,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,36 +28,28 @@ import org.hibernate.annotations.NaturalIdCache;
 @NaturalIdCache
 public class Compra implements Serializable {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	// ATRIBUTOS
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id_compra;
 
-	@Column(name = "id_usuario")
-	private Long idUsuario;
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+	
+	
 	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CompraProducto> compras = new HashSet<CompraProducto>();
 
+	
+	
 	// CONSTRUCTORES
-	public Compra(long idUsuario) {
-		super();
 
-		this.idUsuario = idUsuario;
-	}
-
-	public Compra(long idCompra, long idUsuario) {
+	public Compra(long idCompra) {
 		super();
 		this.id_compra = idCompra;
-
-		this.idUsuario = idUsuario;
 
 	}
 
@@ -59,22 +57,23 @@ public class Compra implements Serializable {
 	}
 
 	// GETTERS && SETTERS
-	public Long getIdCompra() {
+
+
+
+	public Long getId_compra() {
 		return id_compra;
 	}
 
-	public void setIdCompra(Long idCompra) {
-		this.id_compra = idCompra;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-
-
-	public Long getIdUsuario() {
-		return idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId_compra(Long id_compra) {
+		this.id_compra = id_compra;
 	}
 
 	public Set<CompraProducto> getCompras() {
