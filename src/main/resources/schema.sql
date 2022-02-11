@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS usuario_security(
 	 id bigint not null primary key auto_increment,
 	 nombre varchar(40) not null unique,
 	 apellidos varchar(60) not null,
-	 rol varchar(100),
+	 rol varchar(20),
 	 email varchar(60) not null,
 	 passwd varchar(100) not null,
 	 fecha_nacimiento varchar(80) not null);

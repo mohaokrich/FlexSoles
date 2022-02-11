@@ -33,7 +33,7 @@ public class ProductoController {
 
 	@RequestMapping(value = "/producto/borrar/{id}", method = RequestMethod.GET)
 	public String getBorrarIdProducto(@PathVariable("id") long id) {
-		productoModelo.borrar(id);
+		modeloProductoSer.borrar(id);
 		return "redirect:/index";
 	}
 

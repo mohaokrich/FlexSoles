@@ -43,11 +43,11 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		for (final GrantedAuthority grantedAuthority : authorities) {
 			if (grantedAuthority.getAuthority().equals("USER")) {
 				isUsuario = true;
-				session.setAttribute("usuario.rol", grantedAuthority.getAuthority().equals("USER"));
+				session.setAttribute("usuario.roles", grantedAuthority.getAuthority().equals("USER"));
 				break;
 			}else if (grantedAuthority.getAuthority().equals("ADMIN")) {
 				isAdmin = true;
-				session.setAttribute("usuario.rol", grantedAuthority.getAuthority().equals("ADMIN"));
+				session.setAttribute("usuario.roles", grantedAuthority.getAuthority().equals("ADMIN"));
 				break;
 			}
 		}
