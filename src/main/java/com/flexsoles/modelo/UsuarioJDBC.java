@@ -2,7 +2,8 @@ package com.flexsoles.modelo;
 
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
-import com.flexsoles.persistencia.Usuario;
+
+import com.flexsoles.entidad.Usuario;
 
 @Repository
 public class UsuarioJDBC extends DaoGenericoImpl<Usuario> implements UsuarioDAO {

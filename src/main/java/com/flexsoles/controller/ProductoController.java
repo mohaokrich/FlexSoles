@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.flexsoles.entidad.Producto;
 import com.flexsoles.modelo.ProductoDAO;
-import com.flexsoles.persistencia.Producto;
 import com.flexsoles.servicios.ProductoServicio;
 
 
@@ -54,13 +54,12 @@ public class ProductoController {
 		@RequestMapping(value = "/producto/crear", method = RequestMethod.POST)
 		public String CrearProducto(@RequestParam String titulo, String descripcion, double precio, int descuento,
 				Model modelo) {
-			Producto producto = new Producto();
-			producto = new Producto(null, null, 0, 0, 0);
+			Producto producto = new Producto("", "", 0, 0);
 			producto.setTitulo(titulo);
 			producto.setDescripcion(descripcion);
 			producto.setPrecio(precio);
 			producto.setDescuento(descuento);
-			productoModelo.crear(producto);
+			modeloProductoSer.crearProducto(producto);
 			return "redirect:/index";
 		}
 

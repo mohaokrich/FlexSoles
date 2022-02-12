@@ -6,11 +6,10 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-
-import com.flexsoles.persistencia.Compra;
-import com.flexsoles.persistencia.CompraProducto;
-import com.flexsoles.persistencia.CompraProductoId;
-import com.flexsoles.persistencia.Producto;
+import com.flexsoles.entidad.Compra;
+import com.flexsoles.entidad.CompraProducto;
+import com.flexsoles.entidad.CompraProductoId;
+import com.flexsoles.entidad.Producto;
 
 @Repository
 public class ComprasJDBC extends DaoGenericoImpl<Compra>  implements ComprasDAO {

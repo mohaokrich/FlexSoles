@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.flexsoles.entidad.Producto;
 import com.flexsoles.modelo.ProductoDAO;
-import com.flexsoles.persistencia.Producto;
 
 @Controller
 public class IndexController {

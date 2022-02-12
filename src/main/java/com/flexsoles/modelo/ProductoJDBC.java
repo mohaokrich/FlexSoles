@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.flexsoles.persistencia.Producto;
+import com.flexsoles.entidad.Producto;
 
 @Repository
 public class ProductoJDBC extends DaoGenericoImpl<Producto> implements ProductoDAO {

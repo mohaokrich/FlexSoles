@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.flexsoles.dtos.LineaCarrito;
+import com.flexsoles.entidad.Compra;
+import com.flexsoles.entidad.Usuario;
 import com.flexsoles.modelo.ComprasDAO;
-import com.flexsoles.persistencia.Compra;
-import com.flexsoles.persistencia.Usuario;
 import com.flexsoles.servicios.ComprasServicio;
 
 @Controller

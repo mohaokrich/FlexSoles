@@ -8,8 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.flexsoles.entidad.Producto;
 import com.flexsoles.modelo.ProductoDAO;
-import com.flexsoles.persistencia.Producto;
 
 @Transactional
 @Service
@@ -26,7 +26,10 @@ public class ProductoServicioImpl implements ProductoServicio {
 		return listaProductos;
 
 	}
-
+	@Override
+	public Producto crearProducto(Producto p) {
+		return productoModelo.crear(p);
+	}
 	@Override
 	public long contarTodos(Map<String, Object> params) {
 		// TODO Auto-generated method stub
@@ -57,5 +60,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

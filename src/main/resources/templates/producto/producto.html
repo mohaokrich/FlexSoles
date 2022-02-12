@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+<meta charset="UTF-8">
 <div th:replace="head_elements"></div>
 <title>Nike Dunk Low Retro Premium</title>
 </head>
@@ -27,14 +28,14 @@
 
 				<span>
 					<h2 th:text="${producto.titulo}"></h2>
-					<h3 th:text="${producto.precio}+'€'"></h3>
+					<h3 th:text="${producto.precio}+'â‚¬'"></h3>
 					<h3 th:text="${producto.descuento}+'%'"></h3>
 					<p th:text="${producto.descripcion}"></p> <input type="hidden"
 					id="id" name="id" th:value="${producto.id}"> <input
 					type="hidden" id="nombre" name="nombre"
 					th:value="${producto.titulo}"> <input type="number"
 					id="cantidad" name="cantidad" value="" min="1" max="100"> <input
-					type="submit" value="Añadir a la cesta" />
+					type="submit" value="AÃ±adir a la cesta" />
 				</span>
 
 
@@ -43,8 +44,7 @@
 
 			</section>
 		</form>
-		<article id="{id}" name="{titulo}" class="card-body"
-			sec:authorize="hasAuthority('ADMIN')">
+		<article id="{id}" name="{titulo}" class="card-body" sec:authorize="hasAuthority('ADMIN')">
 			<span> <a
 				th:href="@{/producto/borrar/{id}(id=${producto.id})}"><button>Borrar
 						Producto</button></a>

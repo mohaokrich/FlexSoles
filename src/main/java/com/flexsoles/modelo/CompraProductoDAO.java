@@ -1,6 +1,6 @@
 package com.flexsoles.modelo;
 
-import com.flexsoles.persistencia.CompraProducto;
+import com.flexsoles.entidad.CompraProducto;
 
 public interface CompraProductoDAO extends DaoGenerico<CompraProducto>{
 

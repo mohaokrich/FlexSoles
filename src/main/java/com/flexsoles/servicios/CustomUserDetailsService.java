@@ -14,9 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.flexsoles.entidad.Rol;
+import com.flexsoles.entidad.Usuario;
 import com.flexsoles.modelo.UsuarioDAO;
-import com.flexsoles.persistencia.Rol;
-import com.flexsoles.persistencia.Usuario;
 @Transactional
 @Service
 public class CustomUserDetailsService implements UserDetailsService{

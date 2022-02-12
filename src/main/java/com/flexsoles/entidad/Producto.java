@@ -1,4 +1,4 @@
-package com.flexsoles.persistencia;
+package com.flexsoles.entidad;
 import java.io.Serializable;
 
 
@@ -45,10 +45,9 @@ public class Producto implements Serializable {
 	public Producto() {
 	}
 
-	public Producto(String titulo, String descripcion, long id, double precio, int descuento) {
+	public Producto(String titulo, String descripcion, double precio, int descuento) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
-		this.id = id;
 		this.precio = precio;
 		this.descuento = descuento;
 	}

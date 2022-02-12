@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.flexsoles.dtos.LineaCarrito;
+import com.flexsoles.entidad.Compra;
+import com.flexsoles.entidad.CompraProducto;
+import com.flexsoles.entidad.Producto;
+import com.flexsoles.entidad.Usuario;
 import com.flexsoles.modelo.CompraProductoDAO;
 import com.flexsoles.modelo.ComprasDAO;
 import com.flexsoles.modelo.ProductoDAO;
 import com.flexsoles.modelo.UsuarioDAO;
-import com.flexsoles.persistencia.Compra;
-import com.flexsoles.persistencia.CompraProducto;
-import com.flexsoles.persistencia.Producto;
-import com.flexsoles.persistencia.Usuario;
 
 @Service
 @Transactional

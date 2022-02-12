@@ -16,8 +16,8 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.flexsoles.entidad.Usuario;
 import com.flexsoles.modelo.UsuarioDAO;
-import com.flexsoles.persistencia.Usuario;
 
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler{
 	@Autowired

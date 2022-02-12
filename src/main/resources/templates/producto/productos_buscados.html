@@ -2,12 +2,14 @@
 <html lang="es">
 
 <head>
-	<div th:replace="head_elements"></div>
-	<title>Nike Dunk Low Retro Premium</title>
+<meta charset="UTF-8">
+<div th:replace="head_elements"></div>
+<title>Nike Dunk Low Retro Premium</title>
 </head>
 
 <body>
-	<div class="container-fluid" style="display:flex; justify-content:center; flex-direction:column">
+	<div class="container-fluid"
+		style="display: flex; justify-content: center; flex-direction: column">
 		<!-- HEADER APERTURA-->
 		<div th:replace="header"></div>
 		<!-- HEADER APERTURA-->
@@ -15,8 +17,8 @@
 		<!-- NAVAR APERTURA-->
 		<nav th:replace="navbar"></nav>
 		<!-- NAVAR CIERRE-->
-		<section style="display: flex; justify-content:center; margin:5%" class="producto"
-			th:each="productos : ${ListaProductos}">
+		<section style="display: flex; justify-content: center; margin: 5%"
+			class="producto" th:each="productos : ${ListaProductos}">
 			<article>
 				<aside>
 					<img th:src="@{/img/dunk_negras_1.jpg}" alt="dunk_negras_1">
@@ -26,18 +28,21 @@
 				</aside>
 				<span>
 					<h2 th:text="${productos.titulo}"></h2>
-					<h3 th:text="${productos.precio}+'€'"></h3>
+					<h3 th:text="${productos.precio}+'â‚¬'"></h3>
 					<h3 th:text="${productos.descuento}+'%'"></h3>
 					<p th:text="${productos.descripcion}"></p>
-				  <form th:action="@{/compra/cesta}"  method="POST">
-					<input type="hidden" id="id" name="id" th:value="${productos.id}">
-					<input type="hidden" id="nombre" name="nombre" th:value="${productos.titulo}">
-					<input type="number" id="cantidad" name="cantidad" value="" min="1" max="100">
-					<input type="submit" value="Añadir a la cesta" />
-				  </form>
+					<form th:action="@{/compra/cesta}" method="POST">
+						<input type="hidden" id="id" name="id" th:value="${productos.id}">
+						<input type="hidden" id="nombre" name="nombre"
+							th:value="${productos.titulo}"> <input type="number"
+							id="cantidad" name="cantidad" value="" min="1" max="100">
+						<input type="submit" value="AÃ±adir a la cesta" />
+					</form>
 				</span>
-				<article id="{id}" name="{titulo}" th:if="${session.usuario.rol} == ADMIN">
-					<a th:href="@{/producto/borrar/{id}(id=${productos.id})}"><button>Borrar Producto</button></a>
+				<article id="{id}" name="{titulo}"
+					th:if="${session.usuario.rol} == ADMIN">
+					<a th:href="@{/producto/borrar/{id}(id=${productos.id})}"><button>Borrar
+							Producto</button></a>
 				</article>
 			</article>
 		</section>

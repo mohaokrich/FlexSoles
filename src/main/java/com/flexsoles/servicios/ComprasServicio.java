@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.flexsoles.dtos.LineaCarrito;
-import com.flexsoles.persistencia.Compra;
-import com.flexsoles.persistencia.CompraProducto;
-import com.flexsoles.persistencia.Usuario;
+import com.flexsoles.entidad.Compra;
+import com.flexsoles.entidad.CompraProducto;
+import com.flexsoles.entidad.Usuario;
 
 public interface ComprasServicio {
 

@@ -2,7 +2,7 @@ package com.flexsoles.modelo;
 
 import org.springframework.stereotype.Repository;
 
-import com.flexsoles.persistencia.Rol;
+import com.flexsoles.entidad.Rol;
 
 
 @Repository

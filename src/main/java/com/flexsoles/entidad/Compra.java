@@ -1,4 +1,4 @@
-package com.flexsoles.persistencia;
+package com.flexsoles.entidad;
 
 import java.io.Serializable;
 

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.flexsoles.entidad.Usuario;
 import com.flexsoles.modelo.UsuarioDAO;
-import com.flexsoles.persistencia.Usuario;
 import com.flexsoles.servicios.UsuarioServicio;
 
 @Controller
