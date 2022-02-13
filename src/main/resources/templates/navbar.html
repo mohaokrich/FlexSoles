@@ -8,7 +8,7 @@
 					th:href="@{/usuario/user{id}(id=${session.usuario.id})}">
 					<a class="navbar-brand"
 						th:href="@{/usuario/user{id}(id=${session.usuario.id})}"> <img
-						style="width: 50px; height: 50px; margin-left: 1em;"
+						style="width: 2.800em; height: 2.800em; margin-left: 1em;"
 						th:src="@{/img/person.svg}" alt="user_icon">
 						<h6 style="display: flex; flex-flow: column wrap; justify-content: center; color: white"
 							th:text="${session.usuario.nombre}+' '+${session.usuario.apellidos}"></h6>
@@ -52,7 +52,7 @@
 						data-target="#modalLogin">Login</button>
 				</li>
 				<li class="nav-item" th:if="${session.usuario != null}">
-					<button type="button" id="logOut" class="btn btn-primary"
+					<button type="button" id="logOut" class="btn btn-dark"
 						data-toggle="modal" data-target="@{/usuario/logout}">
 						LogOut</button>
 				</li>
@@ -66,7 +66,7 @@
 		</form>
 		<div>
 			<a class="navbar-brand" th:href="@{/compra/cesta}"> <img
-				style="width: 40px; height: 40px;"
+				style="width: 2.000em; height: 2.000em;"
 				th:src="@{/img/cart.svg}" alt="carrito_icon"> <!--<h6 style="display:flex; flex-flow:column wrap; color:white" th:text="${session.usuario.nombre}+' '+${session.usuario.apellidos}"></h6>-->
 			</a>
 		</div>

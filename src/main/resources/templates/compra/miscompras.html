@@ -26,17 +26,20 @@
 					<button class="btn btn-link" data-toggle="collapse"
 						data-target="#collapseOne" aria-expanded="true"
 						aria-controls="collapseOne">
-						<span th:text="'Compra '+${compra.id_compra}"></span>
-					</button>
+						<span style="color: white" th:text="'Compra '+${compra.id_compra}">
+							
+						</span>
 				</h5>
 			</div>
 
 			<div id="collapseOne" class="collapse show"
 				aria-labelledby="headingOne" data-parent="#accordion">
 				<div class="card-body" th:each="comprasProd : ${compra.compras}">
-					<span th:text="${comprasProd.producto.titulo}"></span>
-					</br>
+					<span th:text="${comprasProd.producto.titulo}"></span> 
+					</br> 
 					<span th:text="${comprasProd.unidades}"></span>
+					</br> 
+					<a th:href="@{/compra/devolverCompra{id}(id=${compra.id_compra})}" class="btn btn-info" role="button">Devolver compra</a>	
 				</div>
 			</div>
 		</div>

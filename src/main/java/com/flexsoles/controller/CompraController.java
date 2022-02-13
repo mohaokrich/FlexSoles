@@ -35,6 +35,14 @@ public class CompraController {
 		modelo.addAttribute("ListaCompras", carrito);
 		return "/compra/cesta";
 	}
+	
+	@RequestMapping(value = "/compra/cesta/{id}", method = RequestMethod.GET)
+	public String getBorrarArticuloCesta(@PathVariable long id) {
+		comprasModelo.borrar(id);	
+		return "redirect:/compra/cesta";
+	}
+	
+	
 	@RequestMapping(value = "/compra/miscompras{id}", method = RequestMethod.GET)
 	public String getComprasRealizadas(Model modelo, @PathVariable("id") long id) {
 		Set<Compra> listaComprasRealizadas = comprasServicio.getCompras(id);
@@ -42,8 +50,8 @@ public class CompraController {
 		return "/compra/miscompras";
 	}
 	@RequestMapping(value = "/compra/devolverCompra{id}", method = RequestMethod.GET)
-	public String devolverCompra(@PathVariable("id") long id, Model modelo){
-		comprasModelo.borrar(id);
+	public String devolverCompra(@PathVariable("id") long id){
+		comprasServicio.borrar(id);
 		return "redirect:/index";
 	}
 
@@ -94,18 +102,6 @@ public class CompraController {
 		List<LineaCarrito> carrito = (List<LineaCarrito>) session.getAttribute("carrito");
 		
 		Compra c = comprasServicio.realizarCompra(user, carrito);
-		/* cp = comprasServicio.getUnidades(c);
-
-		for (int i = 0; i < carrito.size(); i++) {
-			c.setIdUsuario(user.getId());
-			cp.setUnidades(carrito.get(i).getCantidad());
-		}					
-*/
-		//comprasModelo.crear(c);
-
-//		if (c == null) {
-//			return "redirect:/index";
-//		}
 
 		return "redirect:/index";
 	}

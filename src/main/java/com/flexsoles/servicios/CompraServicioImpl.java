@@ -1,6 +1,7 @@
 package com.flexsoles.servicios;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -74,5 +75,36 @@ public class CompraServicioImpl implements ComprasServicio {
 	public int obtenerUnidades(CompraProducto c) {
 		return c.getUnidades();
 	}
+
+	@Override
+	public long contarTodos(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Compra crear(Compra t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void borrar(Object id) {
+		comprasModelo.borrar(id);
+		
+	}
+
+	@Override
+	public Compra buscar(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Compra actualizar(Compra t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
