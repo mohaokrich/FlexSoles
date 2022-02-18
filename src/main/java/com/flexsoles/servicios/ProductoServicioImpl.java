@@ -51,8 +51,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 
 	@Override
 	public Producto buscar(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+		return productoModelo.buscar(id);
 	}
 
 	@Override

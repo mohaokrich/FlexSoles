@@ -66,7 +66,6 @@ public class CompraServicioImpl implements ComprasServicio {
 
 	@Override
 	public Set<Compra> getCompras(Long idUsuario) {
-
 		Usuario u = usuarioDao.buscar(idUsuario);
 		return u.getCompras();
 	}

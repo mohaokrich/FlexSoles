@@ -2,8 +2,6 @@ DROP DATABASE FlexSoles;
 CREATE DATABASE FlexSoles;
 USE FlexSoles;
 
-
-
 CREATE TABLE IF NOT EXISTS producto(
 	 id bigint not null primary key auto_increment,
 	 titulo varchar(50) not null,
@@ -34,16 +32,11 @@ CREATE TABLE IF NOT EXISTS usuario_rol(
      FOREIGN KEY(id_usuario) REFERENCES usuario_security(id));
 
 
-
-
-
 CREATE TABLE IF NOT EXISTS compra(
 	  id bigint not null primary key auto_increment,
 	  id_usuario bigint not null,
 	  FOREIGN KEY (id_usuario) REFERENCES usuario_security(id)
 	  );
-
-
 
 CREATE TABLE IF NOT EXISTS compra_producto(
 	id bigint not null primary key auto_increment primary key,
@@ -52,6 +45,14 @@ CREATE TABLE IF NOT EXISTS compra_producto(
     unidades int not null,
     FOREIGN KEY (id_compra) REFERENCES compra(id),
     FOREIGN KEY (id_producto) REFERENCES producto(id)
+);
+
+CREATE TABLE IF NOT EXISTS producto_imagen(
+	id bigint not null auto_increment primary key,
+	nombre varchar(40),
+	imagen LONGBLOB NOT NULL,
+    id_producto bigint,
+	FOREIGN KEY (id_producto) REFERENCES producto(id)
 );
 
 
