@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS compra(
 
 
 CREATE TABLE IF NOT EXISTS compra_producto(
-	id bigint not null primary key auto_increment primary key,
+	id bigint not null primary key auto_increment,
     id_compra bigint not null,
     id_producto bigint not null,
     unidades int not null,
@@ -54,7 +54,18 @@ CREATE TABLE IF NOT EXISTS compra_producto(
     FOREIGN KEY (id_producto) REFERENCES producto(id)
 );
 
-
+CREATE TABLE IF NOT EXISTS pregunta(
+	id bigint not null primary key auto_increment,
+	pregunta varchar(300) not null,
+    id_producto bigint not null,
+    FOREIGN KEY(id_producto) REFERENCES producto(id)
+);
+CREATE TABLE IF NOT EXISTS respuesta(
+	id_respuesta bigint not null primary key auto_increment,
+	respuesta varchar(400) not null,
+	id_pregunta bigint not null,
+	FOREIGN KEY (id_pregunta) REFERENCES pregunta(id)
+);
 
 
 CREATE TABLE SPRING_SESSION (
