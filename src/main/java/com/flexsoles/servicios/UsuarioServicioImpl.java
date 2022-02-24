@@ -43,6 +43,7 @@ public class UsuarioServicioImpl implements UsuarioServicio,UserDetailsService {
 	@Override
 	public Usuario crearUsuario(Usuario u) {
 		Rol rol = roldao.buscar(1L);
+		
 		//rol.setNombre_rol("ADMIN"); --> CREAR ADMIN	
 		u.anadirRol(rol);
 		return usuariodao.crear(u);

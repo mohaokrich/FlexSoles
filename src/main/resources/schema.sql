@@ -2,8 +2,6 @@ DROP DATABASE FlexSoles;
 CREATE DATABASE FlexSoles;
 USE FlexSoles;
 
-
-
 CREATE TABLE IF NOT EXISTS producto(
 	 id bigint not null primary key auto_increment,
 	 titulo varchar(50) not null,
@@ -34,16 +32,11 @@ CREATE TABLE IF NOT EXISTS usuario_rol(
      FOREIGN KEY(id_usuario) REFERENCES usuario_security(id));
 
 
-
-
-
 CREATE TABLE IF NOT EXISTS compra(
 	  id bigint not null primary key auto_increment,
 	  id_usuario bigint not null,
 	  FOREIGN KEY (id_usuario) REFERENCES usuario_security(id)
 	  );
-
-
 
 CREATE TABLE IF NOT EXISTS compra_producto(
 	id bigint not null primary key auto_increment,
@@ -54,18 +47,36 @@ CREATE TABLE IF NOT EXISTS compra_producto(
     FOREIGN KEY (id_producto) REFERENCES producto(id)
 );
 
+
 CREATE TABLE IF NOT EXISTS pregunta(
 	id bigint not null primary key auto_increment,
 	pregunta varchar(300) not null,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
     id_producto bigint not null,
-    FOREIGN KEY(id_producto) REFERENCES producto(id)
+    id_usuario bigint not null,
+    FOREIGN KEY(id_producto) REFERENCES producto(id),
+	FOREIGN KEY(id_usuario) REFERENCES usuario_security(id)
 );
+
 CREATE TABLE IF NOT EXISTS respuesta(
 	id_respuesta bigint not null primary key auto_increment,
 	respuesta varchar(400) not null,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
 	id_pregunta bigint not null,
-	FOREIGN KEY (id_pregunta) REFERENCES pregunta(id)
+    id_usuario bigint not null,
+	FOREIGN KEY (id_pregunta) REFERENCES pregunta(id),
+    FOREIGN KEY(id_usuario) REFERENCES usuario_security(id)
 );
+
+CREATE TABLE IF NOT EXISTS producto_imagen(
+	id bigint not null auto_increment primary key,
+	nombre varchar(40),
+	imagen LONGBLOB NOT NULL,
+    id_producto bigint,
+	FOREIGN KEY (id_producto) REFERENCES producto(id)
+);
+
+
 
 
 CREATE TABLE SPRING_SESSION (

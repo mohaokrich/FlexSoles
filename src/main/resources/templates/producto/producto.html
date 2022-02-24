@@ -2,14 +2,13 @@
 <html lang="es">
 
 <head>
-<meta charset="UTF-8">
-<div th:replace="head_elements"></div>
-<title>Nike Dunk Low Retro Premium</title>
+	<meta charset="UTF-8">
+	<div th:replace="head_elements"></div>
+	<title>Nike Dunk Low Retro Premium</title>
 </head>
 
 <body>
-	<div class="container-fluid"
-		style="display: flex; justify-content: center; flex-direction: column">
+	<div class="container-fluid" style="display: flex; justify-content: center; flex-direction: column">
 		<!-- HEADER APERTURA-->
 		<div th:replace="header"></div>
 
@@ -28,6 +27,8 @@
 					<img th:src="@{/img/dunk_negras_2.jpg}" alt="dunk_negras_2">
 					<img th:src="@{/img/dunk_negras_3.jpg}" alt="dunk_negras_3">
 					<img th:src="@{/img/dunk_negras_4.jpg}" alt="dunk_negras_4">
+			
+					<!--  <img th:src="@{/imagen/{id}(id=${producto.producto_imagen[0].id})}" alt="producto" />-->
 
 				</aside>
 
@@ -41,6 +42,7 @@
 					th:value="${producto.titulo}"> <input type="number"
 					id="cantidad" name="cantidad" value="1" min="1" max="100">
 					<input type="submit" value="Añadir a la cesta" />
+
 				</span>
 		</form>
 		</section>
@@ -56,6 +58,17 @@
 			</article>
 		</form>
 		<!-- BORRAR PRODUCTO -->
+
+		<article id="{id}" name="{titulo}" class="card-body" sec:authorize="hasAuthority('ADMIN')">
+			<span>
+				<form th:action="@{/imagenes/cargar/{producto.id}(producto.id=${producto.id})}" method="POST"
+					enctype="multipart/form-data">
+					<input type="file" class="form-control" name="file" required>
+					<br>
+					<input type="submit" class="btn btn-lg btn-info">
+				</form>
+			</span>
+		</article>
 
 	</div>
 

@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.flexsoles</groupId>
-	<artifactId>FlexSoles</artifactId>
+	<artifactId>FlexSoless</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FlexSoles</name>
 	<description>Tienda de zapatillas FlexSoles</description>

@@ -32,3 +32,5 @@ function crearPregunta() {
 			})
 	}
 }
+function obtenerPreguntas(){
+	

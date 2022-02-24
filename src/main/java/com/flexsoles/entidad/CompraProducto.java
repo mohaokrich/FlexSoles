@@ -38,8 +38,7 @@ public class CompraProducto {
 	private int unidades;
 
 	// CONSTRUCTORES
-	public CompraProducto() {
-	}
+	public CompraProducto() {}
 
 	public CompraProducto(Compra compra, Producto producto, int unidades) {
 		this.id = new CompraProductoId(compra.getId_compra(), producto.getId());

@@ -28,21 +28,30 @@ public class Respuesta implements Serializable{
 	
 	@Column(name = "respuesta")
 	private String respuesta;
+
+	@Column(name="fecha")
+	private String fecha;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("id_pregunta")
 	@JoinColumn(name = "id_pregunta")
 	private Pregunta pregunta;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 	
 	public Respuesta() {}
 	
-	public Respuesta(Long id, String respuesta, Pregunta pregunta) {
+
+	public Respuesta(Long id, String respuesta, String fecha, Pregunta pregunta, Usuario usuario) {
 		super();
 		this.id = id;
 		this.respuesta = respuesta;
+		this.fecha = fecha;
 		this.pregunta = pregunta;
+		this.usuario = usuario;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -60,6 +69,14 @@ public class Respuesta implements Serializable{
 		this.respuesta = respuesta;
 	}
 
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
 	public Pregunta getPregunta() {
 		return pregunta;
 	}
@@ -67,8 +84,13 @@ public class Respuesta implements Serializable{
 	public void setPregunta(Pregunta pregunta) {
 		this.pregunta = pregunta;
 	}
-	
-	
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 }

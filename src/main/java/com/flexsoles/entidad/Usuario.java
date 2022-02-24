@@ -48,6 +48,12 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Compra> compras = new HashSet<Compra>();
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Pregunta> preguntas = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Respuesta> respuestas = new HashSet<>();
+	
 	
 	public Set<Compra> getCompras() {
 		return compras;
@@ -117,9 +123,25 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	// GETTERS & SETTERS
+	
 	public Long getId() {
 		return id;
+	}
+
+	public Set<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+
+	public void setPreguntas(Set<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+
+	public Set<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(Set<Respuesta> respuestas) {
+		this.respuestas = respuestas;
 	}
 
 	public void setId(Long id) {
@@ -182,5 +204,15 @@ public class Usuario implements Serializable {
 	public void eliminarRol(Rol rol) {
 		this.roles.remove(rol);
 		rol.getUsuarios().remove(this);
+	}
+	
+	public void addPregunta(Pregunta pregunta) {
+	    pregunta.setUsuario(this);
+	    getPreguntas().add(pregunta);
+	}
+	
+	public void addRespuesta(Respuesta respuesta) {
+	    respuesta.setUsuario(this);
+		getRespuestas().add(respuesta);
 	}
 }

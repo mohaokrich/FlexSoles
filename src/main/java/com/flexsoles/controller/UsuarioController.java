@@ -57,7 +57,7 @@ public class UsuarioController {
 	public String CrearUsuario(@RequestParam String nombre, String apellidos, String email, String passwd,
 			String fechaNacimiento, HttpServletRequest request, Model modelo) {
 		Usuario usuario = new Usuario();
-
+		
 		usuario.setNombre(nombre);
 		usuario.setApellidos(apellidos);
 

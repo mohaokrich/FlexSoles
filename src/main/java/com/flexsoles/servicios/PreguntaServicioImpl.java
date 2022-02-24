@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.flexsoles.entidad.Pregunta;
 import com.flexsoles.entidad.Producto;
+import com.flexsoles.entidad.Usuario;
 
 @Transactional
 @Service
@@ -17,6 +18,9 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 	ProductoServicio pServicio;
 	@Autowired
 	PreguntaServicio preguntaServicio;
+	@Autowired
+	UsuarioServicio usuarioServicio;
+
 
 	@Override
 	public long contarTodos(Map<String, Object> params) {
@@ -49,12 +53,21 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 	}
 
 	@Override
-	public Pregunta crearPregunta(Pregunta pregunta, Producto producto) {
-		Producto buscarProducto = pServicio.buscar(producto);
-		if(buscarProducto != null) {
-			Pregunta crearPregunta = preguntaServicio.crear(pregunta);
-		}
-		return null;
+	public int crearPregunta(Pregunta pregunta, int idUsuario, int idProducto) {
+			try {
+				
+				Usuario usuario = usuarioServicio.buscar(idUsuario);
+				Producto producto = pServicio.buscar(idProducto);
+				pregunta.setUsuario(usuario);
+				pregunta.setProducto(producto);
+				usuario.addPregunta(pregunta);
+				producto.addPregunta(pregunta);
+			
+				return 1;
+			}catch(Exception error){
+				return 0;
+			}
+
 	}
 
 }

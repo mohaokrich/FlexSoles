@@ -3,6 +3,8 @@ package com.flexsoles.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.flexsoles.entidad.Pregunta;
-import com.flexsoles.entidad.Producto;
 import com.flexsoles.servicios.PreguntaServicio;
 
 @Controller
@@ -30,11 +31,26 @@ public class QAController {
 	}	
 	
 	@ResponseBody
-	@PostMapping("/pregunta/crearPregunta")
-	public ResponseEntity postCrearPregunta(@RequestBody Map<String, String> json, Producto producto) {
-		Pregunta pregunta = preguntaServicio.crear(new Pregunta(json.get("txtPregunta"), producto));
-		ResponseEntity<Object> preg = new ResponseEntity<Object>(pregunta, HttpStatus.OK);
-		return preg;
+	@PostMapping("/crear/pregunta/{idProducto}")
+	public ResponseEntity<Object> crearPreguntas(@PathVariable int idProducto, @RequestBody Map<String, String> json,
+			HttpSession session) {
+		
+		Pregunta pregunta = new Pregunta();
+
+		int idUsuario;
+
+		try {
+			idUsuario = (int) session.getAttribute("id_Usuario");
+		} catch (Exception e) {
+			idUsuario = 1;
+		}
+		pregunta.setPregunta(json.get("pregunta"));
+
+		int id = preguntaServicio.crearPregunta(pregunta, idUsuario, idProducto);
+		
+		PreguntasDto dto = new PreguntasDto(id, json.get("pregunta"), idUsuario, null, null);
+		
+		return new ResponseEntity<Object>(dto, HttpStatus.OK);
 	}
 
 }

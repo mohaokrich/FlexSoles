@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,6 +40,14 @@ public class Producto implements Serializable {
 
 	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CompraProducto> compra_producto = new HashSet <CompraProducto>();
+
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Imagen> producto_imagen = new HashSet<Imagen>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Pregunta> preguntas = new HashSet<>();
+	
+	
 
 	// CONSTRUCTORES
 
@@ -75,7 +84,7 @@ public class Producto implements Serializable {
 
 	
 	
-	
+	//GETTERS Y SETTERS
 	public Long getId() {
 		return id;
 	}
@@ -116,9 +125,7 @@ public class Producto implements Serializable {
 		this.descuento = descuento;
 	}
 	
-	
-	
-
+	//SETTERS Y GETTERS CompraProducto
 	public Set<CompraProducto> getComprasProductos() {
 		return compra_producto;
 	}
@@ -131,6 +138,39 @@ public class Producto implements Serializable {
 		
 		this.compra_producto.add(cp);
 	}
+	
+	//SETTERS Y GETTERS Preguntas
+	public Set<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+
+	public void setPreguntas(Set<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+	
+	public void addPregunta(Pregunta pregunta) {
+	    pregunta.setProducto(this);
+	    getPreguntas().add(pregunta);
+	}
+	
+	
+	//SETTERS Y GETTERS ProductoImagen
+
+	public Set<Imagen> getProducto_imagen() {
+		return producto_imagen;
+	}
+
+
+	public void setProducto_imagen(Set<Imagen> productoImagen) {
+		this.producto_imagen = productoImagen;
+	}
+	public void addImagen(Imagen img) {
+		this.producto_imagen.add(img);
+		img.setProducto(this);
+	}
+	
+
+	
 	
 	
 	

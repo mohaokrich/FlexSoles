@@ -32,49 +32,120 @@ public class Pregunta implements Serializable {
 	
 	@Column(name = "pregunta")
 	private String pregunta;
+	
+	@Column(name="fecha")
+	private String fecha;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("id_producto")
 	@JoinColumn(name = "id_producto")
-	private Producto id_producto;
-
-	public Pregunta() {}
+	private Producto producto;
 	
-	public Pregunta(String pregunta, Producto id_producto) {
-		this.pregunta = pregunta;
-		this.id_producto = id_producto;
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pregunta", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Respuesta> respuestas = new HashSet<>();
+	
+	public Pregunta() {}
 
-	public Pregunta(Long id, String pregunta, Producto id_producto) {
+	
+
+	public Pregunta(Long id, String pregunta, String fecha, Producto producto, Usuario usuario,
+			Set<Respuesta> respuestas) {
 		super();
 		this.id = id;
 		this.pregunta = pregunta;
-		this.id_producto = id_producto;
+		this.fecha = fecha;
+		this.producto = producto;
+		this.usuario = usuario;
+		this.respuestas = respuestas;
 	}
 
-	public String getPregunta() {
-		return pregunta;
-	}
-
-	public void setPregunta(String pregunta) {
+	public Pregunta(String pregunta, Producto producto, Usuario usuario) {
+		super();
 		this.pregunta = pregunta;
+		this.producto = producto;
+		this.usuario = usuario;
 	}
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Producto getId_producto() {
-		return id_producto;
+
+
+	public String getPregunta() {
+		return pregunta;
 	}
 
-	public void setId_producto(Producto id_producto) {
-		this.id_producto = id_producto;
+
+
+	public void setPregunta(String pregunta) {
+		this.pregunta = pregunta;
 	}
 
+
+
+	public String getFecha() {
+		return fecha;
+	}
+
+
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
+
+	public Set<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+
+
+
+	public void setRespuestas(Set<Respuesta> respuestas) {
+		this.respuestas = respuestas;
+	}
+
+
+
+	public void addRespuesta(Respuesta respuesta) {
+	    respuesta.setPregunta(this);
+		getRespuestas().add(respuesta);
+	}
 
 }
