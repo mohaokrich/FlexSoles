@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	private UsuarioDAO usuarioDao;
 	@Override
 	public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
-		Usuario usuario = usuarioDao.getUsuarios(nombre);
+		Usuario usuario = usuarioDao.getUsuarioByName(nombre);
 		
 		Set<Rol> l = usuario.getRoles();
 		HashSet<Rol> roles = new HashSet<>();

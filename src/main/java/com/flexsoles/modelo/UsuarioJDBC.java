@@ -9,7 +9,7 @@ import com.flexsoles.entidad.Usuario;
 public class UsuarioJDBC extends DaoGenericoImpl<Usuario> implements UsuarioDAO {
 
 	@Override
-	public Usuario getUsuarios(String nombre) {
+	public Usuario getUsuarioByName(String nombre) {
 		Query query = this.em.createQuery("FROM Usuario u WHERE u.nombre= :nombre");
 		query.setParameter("nombre", nombre);
 

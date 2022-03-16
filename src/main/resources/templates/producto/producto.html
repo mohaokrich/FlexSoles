@@ -27,9 +27,10 @@
 					<img th:src="@{/img/dunk_negras_2.jpg}" alt="dunk_negras_2">
 					<img th:src="@{/img/dunk_negras_3.jpg}" alt="dunk_negras_3">
 					<img th:src="@{/img/dunk_negras_4.jpg}" alt="dunk_negras_4">
-			
-					<!--  <img th:src="@{/imagen/{id}(id=${producto.producto_imagen[0].id})}" alt="producto" />-->
-
+					
+					<span th:if="${producto.producto_imagen[0].id != null}">
+						<img th:src="@{/imagen/{id}(id=${producto.producto_imagen[0].id})}" alt="producto" />
+					</span>
 				</aside>
 
 				<span>
@@ -49,9 +50,9 @@
 
 
 		<!-- SECCION COMENTARIOS -->
-		<form class="producto" th:action="@{/pregunta/crearPregunta}" method="POST">
+		<form class="producto" id="formPreguntas" th:action="@{/crear/pregunta/{producto.id}(producto.id=${producto.id})}" method="POST">
 			<article sec:authorize="hasAuthority('ADMIN')">
-				<textarea id="txtPregunta" rows="1" cols="40">Pregunta..</textarea>
+				<textarea id="txtPregunta" th:name="p" rows="1" cols="40">Pregunta..</textarea>
 				<div id="preguntas"></div>
 				<br>
 				<button id="enviarPregunta">Enviar</button>

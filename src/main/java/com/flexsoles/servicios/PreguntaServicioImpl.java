@@ -1,65 +1,49 @@
 package com.flexsoles.servicios;
 
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.flexsoles.dtos.PreguntaDTO;
 import com.flexsoles.entidad.Pregunta;
 import com.flexsoles.entidad.Producto;
 import com.flexsoles.entidad.Usuario;
+import com.flexsoles.modelo.PreguntaRepository;
+import com.flexsoles.modelo.ProductoRepository;
+import com.flexsoles.modelo.UsuarioRepository;
 
 @Transactional
 @Service
 public class PreguntaServicioImpl implements PreguntaServicio {
 	@Autowired
-	ProductoServicio pServicio;
+	ProductoServicio productoServicio;
 	@Autowired
-	PreguntaServicio preguntaServicio;
+	ProductoRepository productoJPA;
+	@Autowired
+	PreguntaRepository preguntaJPA;
 	@Autowired
 	UsuarioServicio usuarioServicio;
-
-
+	@Autowired
+	UsuarioRepository usuarioJPA;
+	
+	
 	@Override
-	public long contarTodos(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Pregunta crear(Pregunta t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void borrar(Object id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Pregunta buscar(Object id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Pregunta actualizar(Pregunta t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int crearPregunta(Pregunta pregunta, int idUsuario, int idProducto) {
+	public int crearPregunta(Pregunta pregunta, long idUsuario, long idProducto) {
 			try {
+				LocalDateTime now = LocalDateTime.now();
 				
-				Usuario usuario = usuarioServicio.buscar(idUsuario);
-				Producto producto = pServicio.buscar(idProducto);
+				Usuario usuario = usuarioJPA.getById(idUsuario);
+				Producto producto = productoJPA.getById(idProducto);
+				
+				pregunta.setFecha(now);
 				pregunta.setUsuario(usuario);
 				pregunta.setProducto(producto);
+				
 				usuario.addPregunta(pregunta);
 				producto.addPregunta(pregunta);
 			
@@ -68,6 +52,28 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 				return 0;
 			}
 
+	}
+
+	@Override
+	public List<PreguntaDTO> getAllPreguntas(long idProducto) {
+		List<PreguntaDTO> contenedorPreguntas = new ArrayList<>();
+		List<Pregunta> obtenerPreguntasPorProducto = preguntaJPA.findPreguntaOfProducto(idProducto);
+		
+		for(Pregunta pregunta : obtenerPreguntasPorProducto) {
+			PreguntaDTO eachPregunta = new PreguntaDTO();
+			
+			eachPregunta.setIdUsuario(pregunta.getUsuario().getId());
+			eachPregunta.setNombreUsuario(pregunta.getUsuario().getNombre());
+			
+			eachPregunta.setIdPregunta(pregunta.getId());
+			eachPregunta.setCampoPregunta(pregunta.getPregunta());
+			
+			eachPregunta.setFecha(pregunta.getFecha());
+			
+			contenedorPreguntas.add(eachPregunta);
+		}
+		
+		return contenedorPreguntas;
 	}
 
 }

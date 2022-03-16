@@ -1,11 +1,13 @@
 package com.flexsoles.servicios;
 
 
+import java.util.List;
+
+import com.flexsoles.dtos.PreguntaDTO;
 import com.flexsoles.entidad.Pregunta;
-import com.flexsoles.entidad.Producto;
-import com.flexsoles.modelo.DaoGenerico;
 
-public interface PreguntaServicio extends DaoGenerico<Pregunta> {
-	int crearPregunta(Pregunta pregunta, int idUsuario, int idProducto);
 
+public interface PreguntaServicio {
+	int crearPregunta(Pregunta pregunta, long idUsuario, long idProducto);
+	List<PreguntaDTO> getAllPreguntas(long idProducto);
 }

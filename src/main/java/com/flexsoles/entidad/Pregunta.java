@@ -1,6 +1,8 @@
 package com.flexsoles.entidad;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +36,7 @@ public class Pregunta implements Serializable {
 	private String pregunta;
 	
 	@Column(name="fecha")
-	private String fecha;
+	private LocalDateTime fecha;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_producto")
@@ -51,7 +53,7 @@ public class Pregunta implements Serializable {
 
 	
 
-	public Pregunta(Long id, String pregunta, String fecha, Producto producto, Usuario usuario,
+	public Pregunta(Long id, String pregunta, LocalDateTime fecha, Producto producto, Usuario usuario,
 			Set<Respuesta> respuestas) {
 		super();
 		this.id = id;
@@ -95,13 +97,13 @@ public class Pregunta implements Serializable {
 
 
 
-	public String getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
 
 
-	public void setFecha(String fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 

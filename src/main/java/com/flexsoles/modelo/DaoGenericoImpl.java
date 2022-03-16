@@ -10,7 +10,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public abstract class DaoGenericoImpl<T> implements DaoGenerico<T> {
 
 	@PersistenceContext
