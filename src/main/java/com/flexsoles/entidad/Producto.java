@@ -17,9 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.NaturalIdCache;
 
-@Entity(name = "Producto")
+@Entity
 @Table(name = "producto")
-@NaturalIdCache
 public class Producto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
