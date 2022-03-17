@@ -38,8 +38,8 @@ public class ProductoController {
 
 	@RequestMapping(value = "/producto/borrar/{id}", method = RequestMethod.GET)
 	public String getBorrarIdProducto(@PathVariable("id") long id) {
-		modeloProductoSer.borrar(id);
-		return "redirect:/index";
+		modeloProductoSer.deleteById(id);
+		return "redirect:index";
 	}
 
 	@RequestMapping(value = "/producto/crear", method = RequestMethod.GET)
