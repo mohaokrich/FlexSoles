@@ -66,7 +66,7 @@ public class ImagenServicioImpl implements ImagenServicio {
 
 				//p.addImagen(img);
 				imagenModelo.save(img);
-				productoModelo.actualizar(p);
+				//productoModelo.actualizar(p);
 				return true;
 			}
 

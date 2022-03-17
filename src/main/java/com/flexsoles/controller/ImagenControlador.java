@@ -2,6 +2,7 @@ package com.flexsoles.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -34,23 +35,22 @@ public class ImagenControlador {
 	ProductoServicio productoService;
 
 	@GetMapping("/imagenes/cargar/{id}")
-	public String actualizarFotoPerfil(Model modelo, HttpServletRequest request, @PathVariable("id") long idProducto) {
+	public ModelAndView actualizarFotoPerfil(Model modelo, HttpServletRequest request, @PathVariable("id") long idProducto) {
 
 		ModelAndView mav = new ModelAndView();
 
-		Producto p = productoService.buscar(idProducto);   
+		Producto producto = productoService.buscar(idProducto);   
 		Imagen img = null;
-		if (!p.getProducto_imagen().isEmpty()) {
-			for (Imagen i : p.getProducto_imagen()) {
+		if (!producto.getProducto_imagen().isEmpty()) {
+			for (Imagen i : producto.getProducto_imagen()) {
 				img = i;
 				break;
 			}
 		}
-		//mav.addObject("image", img);
-		modelo.addAttribute("image",img);
-		modelo.addAttribute("producto", p);
-		//mav.setViewName("/producto/producto");
-		return "/producto/producto";
+		mav.addObject("imagen", img);
+		mav.addObject("producto", producto);
+		mav.setViewName("/producto/producto"+idProducto);
+		return mav;
 	}
 
 	@PostMapping("/imagenes/cargar/{id}")
@@ -63,7 +63,7 @@ public class ImagenControlador {
 			if (saveImage) {
 				return "redirect:/producto/producto" + idProducto;
 			} else {
-				return "redirect:/imagenes/cargar/" + idProducto;
+				return "redirect:/";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

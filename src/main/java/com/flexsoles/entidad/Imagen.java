@@ -31,8 +31,7 @@ public class Imagen implements Serializable {
 	private byte[] imagen;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("id_producto")
-	@JoinColumn(name = "id_producto", nullable = true)
+	@JoinColumn(name = "id_producto")
 	private Producto producto;
 	
 	//CONSTRUCTORS
