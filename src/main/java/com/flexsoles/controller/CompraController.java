@@ -93,7 +93,7 @@ public class CompraController {
 		session.setAttribute("cantidad", cantidad);
 		session.setAttribute("carrito", carrito);
 
-		return "redirect:compra/cesta";
+		return "redirect:cesta";
 	}
 	
 	@RequestMapping(value = "/compra/realizarCompra", method = RequestMethod.POST)
