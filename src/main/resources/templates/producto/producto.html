@@ -11,36 +11,55 @@
 	<div class="container-fluid" style="display: flex; justify-content: center; flex-direction: column">
 		<!-- HEADER APERTURA-->
 		<div th:replace="header"></div>
+
 		<!-- HEADER APERTURA-->
 
 		<!-- NAVAR APERTURA-->
 		<nav th:replace="navbar"></nav>
 		<!-- NAVAR CIERRE-->
+
+		<!-- FORM COMPRAS -->
 		<form class="producto" th:action="@{/compra/cesta}" method="POST">
 			<section>
 				<aside>
+
 					<img th:src="@{/img/dunk_negras_1.jpg}" alt="dunk_negras_1">
 					<img th:src="@{/img/dunk_negras_2.jpg}" alt="dunk_negras_2">
 					<img th:src="@{/img/dunk_negras_3.jpg}" alt="dunk_negras_3">
 					<img th:src="@{/img/dunk_negras_4.jpg}" alt="dunk_negras_4">
 					<img src="data:image/png;base64,${image}" alt="Girl in ajacket" style="width: 50px; height: 50px;">
+					
+						<!--<img th:src="@{/imagen/{id}(id=${producto.producto_imagen[0].id})}" alt="producto" />-->
+
 				</aside>
 
 				<span>
 					<h2 th:text="${producto.titulo}"></h2>
 					<h3 th:text="${producto.precio}+'€'"></h3>
 					<h3 th:text="${producto.descuento}+'%'"></h3>
-					<p th:text="${producto.descripcion}"></p> <input type="hidden" id="id" name="id"
-						th:value="${producto.id}"> <input type="hidden" id="nombre" name="nombre"
-						th:value="${producto.titulo}"> <input type="number" id="cantidad" name="cantidad" value=""
-						min="1" max="100"> <input type="submit" value="Añadir a la cesta" />
+					<p th:text="${producto.descripcion}"></p> <input type="hidden"
+					id="id" name="id" th:value="${producto.id}"> <input
+					type="hidden" id="nombre" name="nombre"
+					th:value="${producto.titulo}"> <input type="number"
+					id="cantidad" name="cantidad" value="1" min="1" max="100">
+					<input type="submit" value="Añadir a la cesta" />
+
 				</span>
-			</section>
 		</form>
-		<article id="{id}" name="{titulo}" class="card-body" sec:authorize="hasAuthority('ADMIN')">
-			<span> <a th:href="@{/producto/borrar/{id}(id=${producto.id})}"><button>Borrar Producto</button></a>
-			</span>
-		</article>
+		</section>
+
+
+		<!-- SECCION COMENTARIOS -->
+		<form class="producto" id="formPreguntas" th:action="@{/crear/pregunta/{producto.id}(producto.id=${producto.id})}" method="POST">
+			<article sec:authorize="hasAuthority('ADMIN')">
+				<textarea id="txtPregunta" th:name="p" rows="1" cols="40">Pregunta..</textarea>
+				<div id="preguntas"></div>
+				<br>
+				<button id="enviarPregunta">Enviar</button>
+			</article>
+		</form>
+		<!-- BORRAR PRODUCTO -->
+
 		<article id="{id}" name="{titulo}" class="card-body" sec:authorize="hasAuthority('ADMIN')">
 			<span>
 				<form th:action="@{/imagenes/cargar/{producto.id}(producto.id=${producto.id})}" method="POST"
@@ -51,7 +70,15 @@
 				</form>
 			</span>
 		</article>
+
 	</div>
+
+	<article id="{id}" name="{titulo}" class="card-body"
+		sec:authorize="hasAuthority('ADMIN')">
+		<span> <a th:href="@{/producto/borrar/{id}(id=${producto.id})}"><button>Borrar
+					Producto</button></a>
+		</span>
+	</article>
 </body>
 
 </html>

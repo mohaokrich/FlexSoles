@@ -31,7 +31,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		HttpSession session = request.getSession();
-		Usuario authUser = UsuarioServicio.getUsuarios(userDetails.getUsername());
+		Usuario authUser = UsuarioServicio.getUsuarioByName(userDetails.getUsername());
 		session.setAttribute("usuario", authUser);
 		session.setAttribute("usuario.nombre", authUser.getNombre());
 		session.setAttribute("usuario.id", authUser.getId());

@@ -24,7 +24,7 @@
 			<h3>Dia de Nacimiento:</h3>
 				<p th:text=${usuario.fechaNacimiento}></p>
 			<div class="card-body">
-				<a th:href="@{/compra/miscompras{id}(id=${''+usuario.id})}" class="card-link">Ver compras</a>
+				<a th:href="@{/compra/miscompras{id}(id=${''+usuario.id})}" class="btn btn-info" role="button">Ver compras</a>
 			</div>
 		</article>
 	</div>

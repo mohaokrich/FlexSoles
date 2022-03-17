@@ -43,8 +43,6 @@ public class Compra implements Serializable {
 	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CompraProducto> compras = new HashSet<CompraProducto>();
 
-	
-	
 	// CONSTRUCTORES
 
 	public Compra(long idCompra) {

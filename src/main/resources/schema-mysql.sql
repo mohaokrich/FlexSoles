@@ -39,12 +39,33 @@ CREATE TABLE IF NOT EXISTS compra(
 	  );
 
 CREATE TABLE IF NOT EXISTS compra_producto(
-	id bigint not null primary key auto_increment primary key,
+	id bigint not null primary key auto_increment,
     id_compra bigint not null,
     id_producto bigint not null,
     unidades int not null,
     FOREIGN KEY (id_compra) REFERENCES compra(id),
     FOREIGN KEY (id_producto) REFERENCES producto(id)
+);
+
+
+CREATE TABLE IF NOT EXISTS pregunta(
+	id bigint not null primary key auto_increment,
+	pregunta varchar(300) not null,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_producto bigint not null,
+    id_usuario bigint not null,
+    FOREIGN KEY(id_producto) REFERENCES producto(id),
+	FOREIGN KEY(id_usuario) REFERENCES usuario_security(id)
+);
+
+CREATE TABLE IF NOT EXISTS respuesta(
+	id_respuesta bigint not null primary key auto_increment,
+	respuesta varchar(400) not null,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+	id_pregunta bigint not null,
+    id_usuario bigint not null,
+	FOREIGN KEY (id_pregunta) REFERENCES pregunta(id),
+    FOREIGN KEY(id_usuario) REFERENCES usuario_security(id)
 );
 
 CREATE TABLE IF NOT EXISTS producto_imagen(

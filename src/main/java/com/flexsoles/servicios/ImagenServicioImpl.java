@@ -62,9 +62,7 @@ public class ImagenServicioImpl implements ImagenServicio {
 			} else {
 				Imagen img = new Imagen("foto", image,p);
 				p.getProducto_imagen().add(img);
-
-
-				//p.addImagen(img);
+				p.addImagen(img);
 				imagenModelo.save(img);
 				//productoModelo.actualizar(p);
 				return true;

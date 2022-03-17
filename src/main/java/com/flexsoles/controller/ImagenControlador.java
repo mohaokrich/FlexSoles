@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,10 +35,12 @@ public class ImagenControlador {
 	@Autowired
 	ProductoServicio productoService;
 
+
 	@GetMapping("/imagenes/cargar/{id}")
 	public ModelAndView actualizarFotoPerfil(Model modelo, HttpServletRequest request, @PathVariable("id") long idProducto) {
 
 		ModelAndView mav = new ModelAndView();
+
 
 		Producto producto = productoService.buscar(idProducto);   
 		Imagen img = null;
@@ -51,6 +54,7 @@ public class ImagenControlador {
 		mav.addObject("producto", producto);
 		mav.setViewName("/producto/producto"+idProducto);
 		return mav;
+
 	}
 
 	@PostMapping("/imagenes/cargar/{id}")
@@ -58,7 +62,7 @@ public class ImagenControlador {
 			@PathVariable("id") long idProducto) {
 		try {
 			byte[] image = file.getBytes();
-			Imagen img = new Imagen("foto", image);
+			Imagen img = new Imagen("image", image);
 			Boolean saveImage = imgServicio.actualizarImagen(idProducto, file);
 			if (saveImage) {
 				return "redirect:/producto/producto" + idProducto;
@@ -67,11 +71,11 @@ public class ImagenControlador {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:/imagenes/cargar/" + idProducto;
+			return "redirect:/producto/producto" + idProducto;
 		}
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/imagen/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public @ResponseBody ResponseEntity getImageAsResponseEntity(@PathVariable String id) {
 
 		try {
@@ -81,6 +85,7 @@ public class ImagenControlador {
 			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 
 			ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+			
 			return responseEntity;
 
 		} catch (Exception e) {
