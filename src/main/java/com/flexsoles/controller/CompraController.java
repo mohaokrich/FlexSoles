@@ -33,13 +33,13 @@ public class CompraController {
 	public String getCesta(Model modelo, HttpSession session) {
 		List<Compra> carrito = (List<Compra>) session.getAttribute("carrito");
 		modelo.addAttribute("ListaCompras", carrito);
-		return "/compra/cesta";
+		return "compra/cesta";
 	}
 	
 	@RequestMapping(value = "/compra/cesta/{id}", method = RequestMethod.GET)
 	public String getBorrarArticuloCesta(@PathVariable long id) {
 		comprasModelo.borrar(id);	
-		return "redirect:/compra/cesta";
+		return "redirect:compra/cesta";
 	}
 	
 	
@@ -47,7 +47,7 @@ public class CompraController {
 	public String getComprasRealizadas(Model modelo, @PathVariable("id") long id) {
 		Set<Compra> listaComprasRealizadas = comprasServicio.getCompras(id);
 		modelo.addAttribute("listaComprasRealizadas", listaComprasRealizadas);
-		return "/compra/miscompras";
+		return "compra/miscompras";
 	}
 	@RequestMapping(value = "/compra/devolverCompra{id}", method = RequestMethod.GET)
 	public String devolverCompra(@PathVariable("id") long id){
@@ -93,7 +93,7 @@ public class CompraController {
 		session.setAttribute("cantidad", cantidad);
 		session.setAttribute("carrito", carrito);
 
-		return "redirect:/compra/cesta";
+		return "redirect:compra/cesta";
 	}
 	
 	@RequestMapping(value = "/compra/realizarCompra", method = RequestMethod.POST)

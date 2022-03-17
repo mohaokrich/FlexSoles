@@ -51,7 +51,7 @@ public class ProductoController {
 	public String getBuscarProducto(Model modelo, @RequestParam String busqueda) {
 		List<Producto> ListaProductos = modeloProductoSer.obtenerListaProductos(busqueda);
 		modelo.addAttribute("ListaProductos", ListaProductos);
-		return "/producto/productos_buscados";
+		return "producto/productos_buscados";
 	}
 	
 	

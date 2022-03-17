@@ -52,7 +52,7 @@ public class ImagenControlador {
 		}
 		mav.addObject("imagen", img);
 		mav.addObject("producto", producto);
-		mav.setViewName("/producto/producto"+idProducto);
+		mav.setViewName("producto/producto"+idProducto);
 		return mav;
 
 	}
@@ -65,13 +65,13 @@ public class ImagenControlador {
 			Imagen img = new Imagen("image", image);
 			Boolean saveImage = imgServicio.actualizarImagen(idProducto, file);
 			if (saveImage) {
-				return "redirect:/producto/producto" + idProducto;
+				return "redirect:producto/producto" + idProducto;
 			} else {
 				return "redirect:/";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:/producto/producto" + idProducto;
+			return "redirect:producto/producto" + idProducto;
 		}
 	}
 

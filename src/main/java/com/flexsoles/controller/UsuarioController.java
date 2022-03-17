@@ -49,7 +49,7 @@ public class UsuarioController {
 	public String getPerfil(Model modelo, @PathVariable("id") long id) {
 		Usuario usuario = usuarioModelo.buscar(id);
 		modelo.addAttribute("usuario", usuario);
-		return "/usuario/user";
+		return "usuario/user";
 	}
 
 	// POST METHODS
