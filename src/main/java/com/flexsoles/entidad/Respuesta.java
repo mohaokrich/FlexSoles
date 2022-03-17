@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalIdCache;
 
-@Entity(name = "Respuesta")
+@Entity
 @Table(name = "respuesta")
 @NaturalIdCache
 public class Respuesta implements Serializable{

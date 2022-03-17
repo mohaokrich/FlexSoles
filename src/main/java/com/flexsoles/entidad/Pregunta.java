@@ -21,9 +21,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalIdCache;
 
-@Entity(name = "Pregunta")
+@Entity
 @Table(name = "pregunta")
-@NaturalIdCache
 public class Pregunta implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// ATRIBUTOS

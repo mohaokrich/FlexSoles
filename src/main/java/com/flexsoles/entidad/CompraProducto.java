@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Entity(name = "CompraProducto")
+@Entity
 @Table(name = "compra_producto")
 public class CompraProducto {
 	// ATRIBUTOS
