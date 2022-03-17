@@ -33,7 +33,7 @@ public class ProductoController {
 	public String getIdProducto(Model modelo, @PathVariable("id") long id) {
 		Producto producto = (Producto) productoModelo.buscar(id);
 		modelo.addAttribute("producto", producto);
-		return "/producto/producto";
+		return "producto/producto";
 	}
 
 	@RequestMapping(value = "/producto/borrar/{id}", method = RequestMethod.GET)
