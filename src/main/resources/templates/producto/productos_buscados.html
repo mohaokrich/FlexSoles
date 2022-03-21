@@ -28,7 +28,7 @@
 				</aside>
 				<span>
 					<h2 th:text="${productos.titulo}"></h2>
-					<h3 th:text="${productos.precio}+'â‚¬'"></h3>
+					<h3 th:text="${productos.precio}+'€'"></h3>
 					<h3 th:text="${productos.descuento}+'%'"></h3>
 					<p th:text="${productos.descripcion}"></p>
 					<form th:action="@{/compra/cesta}" method="POST">
@@ -36,7 +36,7 @@
 						<input type="hidden" id="nombre" name="nombre"
 							th:value="${productos.titulo}"> <input type="number"
 							id="cantidad" name="cantidad" value="" min="1" max="100">
-						<input type="submit" value="AÃ±adir a la cesta" />
+						<input type="submit" value="Añadir a la cesta" />
 					</form>
 				</span>
 				<article id="{id}" name="{titulo}"

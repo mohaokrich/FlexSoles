@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	                            "/usuario/signup",
 	                            "/producto/producto{id}",
 	                            "/imagen/{id}",
-	                            "/producto/buscar",
+	                            "/producto/buscar**",
 	                            "/webjars/**").permitAll()
 	                    .antMatchers("producto/crear").hasAuthority("ADMIN")
 	                    .antMatchers("producto/borrar/{id}").hasAuthority("ADMIN")

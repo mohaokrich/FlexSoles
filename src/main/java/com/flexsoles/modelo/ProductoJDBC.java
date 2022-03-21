@@ -26,12 +26,6 @@ public class ProductoJDBC extends DaoGenericoImpl<Producto> implements ProductoD
 		return lpProductos;
 	}
 
-	@Override
-	public List<Producto> buscarNombre(String titulo) {
-		Query query = this.em.createQuery("FROM Producto p WHERE p.titulo LIKE :titulo");
-		query.setParameter("titulo", MatchMode.ANYWHERE.toMatchString(titulo));
-		List<Producto> lProductos = query.getResultList();
-		return lProductos;
-	}
+	
 
 }

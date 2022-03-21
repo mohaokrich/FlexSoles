@@ -38,7 +38,7 @@ public class PreguntaServicioImpl implements PreguntaServicio {
 				LocalDateTime now = LocalDateTime.now();
 				
 				Usuario usuario = usuarioJPA.getById(idUsuario);
-				Producto producto = productoJPA.getById(idProducto);
+				Producto producto = productoJPA.findById(idProducto).orElse(null);
 				
 				pregunta.setFecha(now);
 				pregunta.setUsuario(usuario);

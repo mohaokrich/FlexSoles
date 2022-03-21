@@ -1,50 +1,36 @@
 package com.flexsoles.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.flexsoles.entidad.Producto;
-import com.flexsoles.modelo.ProductoDAO;
 import com.flexsoles.servicios.ProductoServicio;
 
 
 @Controller
 public class ProductoController {
 	@Autowired
-	private ProductoDAO productoModelo;
-	@Autowired
 	private ProductoServicio modeloProductoSer;
 	
 	// GET METHODS
 	@RequestMapping(value = "/producto/producto{id}", method = RequestMethod.GET)
 	public String getIdProducto(Model modelo, @PathVariable("id") long id) {
-		Producto producto = (Producto) productoModelo.buscar(id);
+		Producto producto = (Producto) modeloProductoSer.buscarProducto(id);
 		modelo.addAttribute("producto", producto);
 		return "producto/producto";
 	}
 
 	@RequestMapping(value = "/producto/borrar/{id}", method = RequestMethod.GET)
 	public String getBorrarIdProducto(@PathVariable("id") long id) {
-		modeloProductoSer.deleteById(id);
-		return "redirect:index";
-	}
-
-	@RequestMapping(value = "/producto/crear", method = RequestMethod.GET)
-	public String getCrear() {
-		return "/producto/crear";
+		modeloProductoSer.borrarProducto(id);
+		return "redirect:/index";
 	}
 
 	@RequestMapping(value = "/producto/buscar", method = RequestMethod.GET)

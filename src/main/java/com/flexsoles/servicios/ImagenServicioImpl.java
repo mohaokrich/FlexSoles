@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +16,7 @@ import com.flexsoles.modelo.ProductoDAO;
 
 @Transactional
 @Service
+@Component(value="ImagenServicio")
 public class ImagenServicioImpl implements ImagenServicio {
 	@Autowired
 	private ImagenDAO imagenModelo;

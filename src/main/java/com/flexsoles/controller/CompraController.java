@@ -51,7 +51,7 @@ public class CompraController {
 	}
 	@RequestMapping(value = "/compra/devolverCompra{id}", method = RequestMethod.GET)
 	public String devolverCompra(@PathVariable("id") long id){
-		comprasServicio.borrar(id);
+		comprasServicio.borrarCompra(id);
 		return "redirect:/index";
 	}
 

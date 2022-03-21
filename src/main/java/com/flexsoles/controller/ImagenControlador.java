@@ -42,7 +42,7 @@ public class ImagenControlador {
 		ModelAndView mav = new ModelAndView();
 
 
-		Producto producto = productoService.buscar(idProducto);   
+		Producto producto = productoService.buscarProducto(idProducto);   
 		Imagen img = null;
 		if (!producto.getProducto_imagen().isEmpty()) {
 			for (Imagen i : producto.getProducto_imagen()) {

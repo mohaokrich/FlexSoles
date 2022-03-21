@@ -5,7 +5,6 @@ import com.flexsoles.entidad.Producto;
 
 public interface ProductoDAO extends DaoGenerico<Producto>{
 	List<Producto> get8Productos();
-	List<Producto> buscarNombre(String titulo);
 }
 
 

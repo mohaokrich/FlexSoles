@@ -10,11 +10,12 @@ import com.flexsoles.entidad.Producto;
 import com.flexsoles.entidad.Usuario;
 import com.flexsoles.modelo.DaoGenerico;
 
-public interface ComprasServicio extends DaoGenerico<Compra>{
+public interface ComprasServicio{
 
 	Compra realizarCompra (Usuario u, List<LineaCarrito> listaCarrito);
 	//List<Compra> getCompras(Long idUsuario);
 	int obtenerUnidades(CompraProducto c);
 	//List<Compra> getCompras(Long idUsuario, Long idCompra);
 	Set<Compra> getCompras(Long idUsuario);
+	void borrarCompra(Long idCompra);
 }

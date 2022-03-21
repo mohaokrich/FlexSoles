@@ -15,8 +15,8 @@ import com.flexsoles.entidad.CompraProducto;
 import com.flexsoles.entidad.Producto;
 import com.flexsoles.entidad.Usuario;
 import com.flexsoles.modelo.CompraProductoDAO;
+import com.flexsoles.modelo.CompraRepository;
 import com.flexsoles.modelo.ComprasDAO;
-import com.flexsoles.modelo.ProductoDAO;
 import com.flexsoles.modelo.UsuarioDAO;
 
 @Service
@@ -24,7 +24,9 @@ import com.flexsoles.modelo.UsuarioDAO;
 public class CompraServicioImpl implements ComprasServicio {
 
 	@Autowired
-	private ProductoDAO productoModelo;
+	private ProductoServicio productoServicio;
+	@Autowired
+	private CompraRepository compraJPA;
 	@Autowired
 	private ComprasDAO comprasModelo;
 	@Autowired
@@ -43,7 +45,7 @@ public class CompraServicioImpl implements ComprasServicio {
 		usuario.getCompras().add(compra);
 		compra = comprasModelo.crear(compra);
 		for (LineaCarrito linea : listaCarrito) {
-			Producto p = productoModelo.buscar(linea.getIdProducto());
+			Producto p = productoServicio.buscarProducto(linea.getIdProducto());
 
 			CompraProducto cp = compra.anadirCompraProducto(p, linea.getCantidad());
 
@@ -53,10 +55,10 @@ public class CompraServicioImpl implements ComprasServicio {
 
 			compraProductoModelo.crear(cp);
 			// compraporductomodelo.crear CP
-			productoModelo.actualizar(p);
+			productoServicio.actualizarProducto(p);
 
 		}
-		comprasModelo.actualizar(compra);
+		compraJPA.save(compra);
 		// compramodelo.actualizar compra
 
 		// SI ES 0 O NULO HA FALLADO
@@ -76,34 +78,12 @@ public class CompraServicioImpl implements ComprasServicio {
 	}
 
 	@Override
-	public long contarTodos(Map<String, Object> params) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Compra crear(Compra t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void borrar(Object id) {
-		comprasModelo.borrar(id);
+	public void borrarCompra(Long idCompra) {
+		compraJPA.deleteById(idCompra);
 		
 	}
+	
 
-	@Override
-	public Compra buscar(Object id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Compra actualizar(Compra t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }
